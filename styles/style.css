@@ -1,0 +1,134 @@
+/* Configurações Iniciais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f8ff; /* Alice Blue */
+    animation: fadeIn 2s ease-in-out;
+    overflow-x: hidden; /* Prevent horizontal overflow on body */
+    font-size: 18px; /* Increased base font size for larger elements */
+}
+
+h1 {
+    font-size: 5rem; /* Larger font size for the title */
+    color: #1e3a8a; /* Dark Blue */
+}
+
+main {
+    width: 100%;
+    padding: 0;
+    display: block;
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    background-color: #e0f2fe; /* Light Blue */
+}
+
+h2 {
+    margin-top: 0;
+    color: #1e40af; /* Medium Blue */
+    font-size: 2rem; /* Larger font size for section titles */
+}
+
+p {
+    color: #1e3a8a; /* Dark Blue */
+    font-size: 1.2rem; /* Larger font size for paragraphs */
+}
+
+/* Header */
+header {
+    height: 100vh;
+    text-align: center;
+    padding-top: 15vh;
+    padding-bottom: 20vh; /* Increased margin for more space */
+    padding: 2vh; /* Added padding for header */
+}
+
+#scroll-button{
+    border: none;
+    background-color: transparent;
+    width: 128px;
+    height: 128px;
+    justify-content: center;
+    align-items: center;
+}
+
+#scroll-button img{ 
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Intrucoes */
+
+.center-div {
+    display: flex;
+    justify-content: space-evenly;
+    height: 85vh;
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+.card h3{
+    margin: 0;
+    color: #1e3a8a; /* Dark Blue */
+    font-size: 1.5rem; /* Larger font size for paragraphs */
+}
+
+#instrucoes button{
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 20vh;
+    justify-content: center;
+    width: 100vh;
+    background-color: #1e3a8a; /* Dark Blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 2rem; /* Larger font size for buttons */
+}
+
+/* Quiz */
+#quiz {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
+
+#quiz .center-div {
+    display: flex;
+    justify-content: space-evenly;
+    height: 85vh;
+}	
+
+#quiz h2{
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 10px;
+    color: #1e40af; /* Medium Blue */
+    font-size: 2rem; /* Larger font size for section titles */
+}
