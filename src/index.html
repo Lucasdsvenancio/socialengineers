@@ -1,43 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Descrição da página">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Descrição da página" />
     <title>Projeto Social Engineers</title>
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css" />
     <script src="./scripts/script.js" defer></script>
 </head>
 <body>
     <header>
         <h1>Você sabe identificar um padrão manipulativo?</h1>
-        <button id="scroll-button"><img src="./assets/down-arrow.png"></button>
+        <button id="scroll-button"><img src="./assets/down-arrow.png" alt="Scroll Down" /></button>
     </header>
+
     <main>
-        <section id="instrucoes">
-            <div class="center-div">
-                <div class="card">
-                    <h3>Confirmshaming</h3>
-                    <p class="description">Confirmshaming funciona ao provocar emoções desconfortáveis, como culpa ou vergonha, para influenciar a tomada de decisão dos usuários. Sites ou aplicativos que utilizam esse padrão enganoso costumam apresentar botões de recusa com rótulos redigidos de forma depreciativa ou humilhante, fazendo com que os usuários se sintam mal por optarem por não aderir ao serviço ou recurso oferecido. Ao atingir as emoções e a autoimagem dos usuários, o confirmshaming busca aumentar as chances de que eles cedam à ação desejada, beneficiando, no final das contas, o provedor do serviço.</p>
+        <section id="definicoes">
+            <h2 class="carousel-text"> Aqui estão explicados alguns dos padrões os quais sao utilizados nas redes</h2>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="card">
+                        <h3>Confirmshaming</h3>
+                        <p class="description">
+                            Confirmshaming funciona ao provocar emoções desconfortáveis, como culpa ou vergonha, para influenciar a tomada de decisão dos usuários. Sites ou aplicativos que utilizam esse padrão enganoso costumam apresentar botões de recusa com rótulos redigidos de forma depreciativa ou humilhante, fazendo com que os usuários se sintam mal por optarem por não aderir ao serviço ou recurso oferecido. Ao atingir as emoções e a autoimagem dos usuários, o confirmshaming busca aumentar as chances de que eles cedam à ação desejada, beneficiando, no final das contas, o provedor do serviço.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Bait and Switch</h3>
+                        <p class="description">
+                            O "bait and switch" (isca e troca) é um padrão enganoso onde um produto ou serviço atraente é anunciado a um preço baixo (a isca), mas quando os consumidores tentam comprá-lo, descobrem que não está disponível. Em vez disso, são persuadidos a comprar um item semelhante, mas mais caro e menos desejável (a troca).
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Custos Ocultos</h3>
+                        <p class="description">
+                            Custos ocultos são taxas ou encargos adicionais que não são revelados de forma clara e antecipada no processo de compra. Os usuários só descobrem esses custos inesperados no final da transação, o que pode levá-los a pagar mais do que o inicialmente previsto.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Armadilha de Assinatura</h3>
+                        <p class="description">
+                            Armadilhas de assinatura são projetadas para dificultar o cancelamento de um serviço de assinatura. Isso pode envolver processos de cancelamento complexos, informações de contato de suporte difíceis de encontrar ou a renovação automática de assinaturas sem aviso prévio adequado.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Privacy Zuckering</h3>
+                        <p class="description">
+                            "Privacy Zuckering" refere-se a táticas que induzem os usuários a compartilhar mais informações pessoais do que pretendiam. Isso pode acontecer por meio de configurações de privacidade confusas, padrões predefinidos que favorecem o compartilhamento ou interfaces que manipulam os usuários a revelar dados.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Interferência na Interface</h3>
+                        <p class="description">
+                            A interferência na interface ocorre quando o design de um site ou aplicativo é deliberadamente confuso ou manipulador, dificultando a realização de uma tarefa que seria do interesse do usuário (por exemplo, cancelar uma conta, recusar um rastreamento ou encontrar informações importantes).
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Continuidade Forçada</h3>
+                        <p class="description">
+                            Continuidade forçada acontece quando um usuário se inscreve para um teste gratuito e, ao final do período, começa a ser cobrado automaticamente sem um aviso claro ou a necessidade de confirmar a continuidade da assinatura.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Friend Spam</h3>
+                        <p class="description">
+                            "Friend Spam" ocorre quando um serviço solicita acesso à lista de contatos de um usuário sob um pretexto específico (como encontrar amigos), mas depois usa esses contatos para enviar mensagens promocionais ou convites sem o consentimento explícito de todos os envolvidos.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Pré-seleção</h3>
+                        <p class="description">
+                            A pré-seleção envolve opções que são marcadas por padrão, influenciando os usuários a escolherem uma opção específica que pode não ser do seu melhor interesse. Isso explora a tendência dos usuários de não alterarem as configurações padrão.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Urgência Falsa</h3>
+                        <p class="description">
+                            Urgência falsa cria um senso de tempo limitado que não é genuíno (por exemplo, "apenas X itens restantes" quando o estoque é abundante ou "oferta termina hoje" quando é recorrente). Isso pressiona os usuários a tomar decisões rápidas sem avaliar totalmente suas opções.
+                        </p>
+                    </div>
+                    
                 </div>
-                <div class="card">
-                    <h3>Fake Urgency</h3>
-                    <p class="description">Quando um usuário é colocado sob pressão de tempo, ele tem menos capacidade de avaliar criticamente as informações apresentadas, pois dispõe de menos tempo e pode sentir ansiedade ou estresse. Os provedores podem usar isso a seu favor para induzi-lo a completar uma ação que talvez não seja totalmente do interesse do usuário..</p>
-                </div>
-                <div class="card">
-                    <h3>Fake social proof</h3>
-                    <p class="description">O padrão enganoso de falsa prova social cria uma ilusão de popularidade e credibilidade ao apresentar aos usuários endossos falsificados ou exagerados, como avaliações, depoimentos ou mensagens de atividade. Essa manipulação explora o viés cognitivo da prova social, no qual os indivíduos tendem a seguir o comportamento dos outros. Trata-se de um atalho que permite às pessoas evitarem o esforço de realizar uma avaliação crítica por conta própria. Ao utilizar esse padrão enganoso, os provedores podem enganar os usuários para que façam uma compra ou interajam com suas ofertas.</p>
+
+                <div class="carousel-buttons">
+                    <button class="carousel-button prev-button" aria-label="Card anterior">&#10094;</button>
+                    <button class="carousel-button next-button" aria-label="Próximo card">&#10095;</button>
                 </div>
             </div>
-            <button id="scroll-button-2">Vamos aprender mais?</button>
+
+            <button id="scroll-button-2">Estou pronto pra aprender mais!</button>
         </section>
+
         <section id="quiz">
             <h2>Vamos testar seu conhecimento?</h2>
+            <!-- Quiz cards criados dinamicamente via JS -->
         </section>
+
         <section id="section3">
             <h2>Seção 3</h2>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2023 Seu Nome. Todos os direitos reservados.</p>
     </footer>
