@@ -88,24 +88,37 @@ waitForFetch().then(() => {
     create_new_card();
 });
 
-function create_new_card() {
+var questions_made = []
+var points = 0;
+
+function create_new_card(correct) {
+    if (correct === 1) {
+        points += 1;
+        console.log("Acertou! Pontos: " + points);
+    }
     // Limpa conteudo do quiz
     quiz.innerHTML = "<h2>Vamos testar seu conhecimento?</h2>";
     // Cria um novo card
     const newCard = document.createElement("div");
     newCard.className = "quiz-card";
     // Faz com que o nome da pergunta seja aleatório
-    const randomIndex = Math.floor(Math.random() * questions.length);
+    var randomIndex = 0;
+    for (let i = 0; i < questions.length; i++) {
+        var index = Math.floor(Math.random() * questions.length)
+        if (!(index  in questions_made)) {
+            randomIndex = index;
+            break;
+        }
+    }
     const question = questions[randomIndex].question;
     const correctAnswer = questions[randomIndex].correctAnswer;
     const incorrectAnswer = questions[randomIndex].incorrectAnswer;
     newCard.innerHTML = `
         <h2>${question}</h2>
         <div class="quiz-image-container">
-            <img src="./assets/${correctAnswer}.jpg" class="quiz-image">
-            <img src="./assets/${incorrectAnswer}.jpg" class="quiz-image">
+            <img src="./assets/${correctAnswer}.jpg" class="quiz-image" onclick="create_new_card(1)">
+            <img src="./assets/${incorrectAnswer}.jpg" class="quiz-image" onclick="create_new_card(0)">
         </div>
-        <button class="card-button" onclick="create_new_card()" id="card-button">Trocar pergunta</button>
     `
 
     // Adiciona o card ao quiz
