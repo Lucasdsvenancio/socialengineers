@@ -1,3 +1,4 @@
+/* Configurações gerais */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,7 +16,9 @@ body {
 }
 
 h1 {
-    font-size: 5rem;
+    font-size: 5vw;
+    width: 100%;
+    height: 50%;
     color: #1e3a8a;
 }
 
@@ -34,15 +37,8 @@ section {
 h2 {
     margin-top: 0;
     color: #1e40af;
-    font-size: 2rem;
-}
-
-.carousel-text {
-    justify-content: center;
-    align-items: center;
+    font-size: 2vw;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 65px;
 }
 
 p {
@@ -58,20 +54,22 @@ header {
     padding: 2vh;
 }
 
-#scroll-button {
+/* Botões */
+
+#scroll-into-definitions {
     border: none;
     background-color: transparent;
-    width: 128px;
-    height: 128px;
+    width: 10vw;
+    height: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     margin-bottom: 0px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
-#scroll-button img {
+#scroll-into-definitions img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -79,6 +77,49 @@ header {
     justify-content: center;
     align-items: center;
 }
+
+#scroll-into-quiz {
+    display: flex;
+    margin: 0 auto 10vh auto;
+    justify-content: center;
+    width: 40vw;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 2vw;
+}
+
+.carousel-button {
+    background-color: transparent;
+    color: #333;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    pointer-events: auto;
+    padding: 0;
+    transition: color 0.3s ease;
+    position: absolute;
+    z-index: 100;
+    top: 45%;
+}
+
+.carousel-button:hover {
+    color: #1e3a8a;
+}
+
+.prev-button {
+    left: -5%;
+}
+
+.next-button {
+    right: -5%; 
+}
+
+
+/* Carossel */
 
 .carousel-container {
     position: relative;
@@ -88,8 +129,15 @@ header {
     overflow: visible;
     perspective: 1000px;
     --card-width: 300px;
-    margin-bottom: 80px;
-    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.carousel-text {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .carousel-track {
@@ -153,53 +201,8 @@ header {
     scrollbar-color: #b0b0b0 #f0f0f0;
 }
 
-.carousel-buttons {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: space-between;
-    width: calc(var(--card-width) + 100px);
-    pointer-events: none;
-}
 
-.carousel-button {
-    background-color: transparent;
-    color: #333;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    pointer-events: auto;
-    padding: 0;
-    transition: color 0.3s ease;
-}
-
-.carousel-button:hover {
-    color: #1e3a8a;
-}
-
-.prev-button {
-    margin-left: calc(var(--card-width) / 2);
-}
-
-.next-button {
-    margin-right: calc(var(--card-width) / 2);
-}
-
-#definicoes button {
-    display: flex;
-    margin: 0 auto 10vh auto;
-    justify-content: center;
-    width: 100vh;
-    background-color: #1e3a8a;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 2rem;
-}
+/* Quiz */
 
 #quiz {
     width: 100%;
@@ -217,15 +220,18 @@ header {
     width: 100%;
 }
 
-.card-image {
+.quiz-image-container {
     display: flex;
     width: 100%;
+    margin-top: 1%;
+    justify-content: center;
 }
 
-.card-image img {
+.quiz-image{
     flex: 1;
-    max-width: 100%;
-    margin: 10px;
+    max-width: 30%;
+    margin: 0 5%;
+    border: #b0b0b0 3px solid;
     height: auto;
 }
 
