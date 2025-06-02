@@ -92,45 +92,16 @@ header {
     font-size: 2vw;
 }
 
-.carousel-button {
-    background-color: transparent;
-    color: #333;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    pointer-events: auto;
-    padding: 0;
-    transition: color 0.3s ease;
-    position: absolute;
-    z-index: 100;
-    top: 45%;
-}
-
-.carousel-button:hover {
-    color: #1e3a8a;
-}
-
-.prev-button {
-    left: -5%;
-}
-
-.next-button {
-    right: -5%; 
-}
-
-
-/* Carossel */
-
+/* Carousel Container */
 .carousel-container {
     position: relative;
-    width: 400px;
-    height: 450px;
+    align-content: center;
+    align-items: center;
+    width: 50vw; 
+    height: 60vh; 
     margin: 0 auto;
-    overflow: visible;
-    perspective: 1000px;
-    --card-width: 300px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
 }
 
 .carousel-text {
@@ -141,16 +112,19 @@ header {
 }
 
 .carousel-track {
-    position: relative;
-    height: 100%;
+    position: center;
+    height: 70%;
+    width: 90%;
 }
 
 .card {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 300px;
-    height: 450px;
+    width: 40vw; 
+    max-width: 350px;
+    min-width: 300px; 
+    height: 95%;
     margin-left: -150px;
     opacity: 0;
     transition: all 0.5s ease;
@@ -168,6 +142,8 @@ header {
 
 .card.active {
     opacity: 1;
+    position: center;
+    align-self: center;
     transform: translateX(0) scale(1) rotateY(0);
     z-index: 10;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -190,7 +166,7 @@ header {
 .card h3 {
     margin: 0;
     color: #1e3a8a;
-    font-size: 1.5rem;
+    font-size: 1.0rem;
 }
 
 .description {
@@ -201,6 +177,21 @@ header {
     scrollbar-color: #b0b0b0 #f0f0f0;
 }
 
+@media (max-width: 768px) {
+    .carousel-container {
+        width: 80vw;
+        height: 50vh;
+        --card-width: 60vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        width: 100vw;
+        height: 40vh;
+        --card-width: 80vw;
+    }
+}
 
 /* Quiz */
 
@@ -233,20 +224,6 @@ header {
     margin: 0 5%;
     border: #b0b0b0 3px solid;
     height: auto;
-}
-
-@media (max-width: 768px) {
-    .carousel-button {
-        width: 30%;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .carousel-button {
-        width: 40%;
-        font-size: 10px;
-    }
 }
 
 #alternating-info-section {
@@ -315,4 +292,32 @@ header {
 
 .info-row.reverse {
     flex-direction: row-reverse;
+}
+
+/* Botões do Carrossel */
+.carousel-button {
+    background-color: transparent; 
+    color: #333;
+    border: none;
+    font-size: 2.5vw; 
+    cursor: pointer;
+    pointer-events: auto;
+    padding: 10px; 
+    transition: color 0.3s ease;
+    position: absolute;
+    top: 35%;
+    transform: translateY(-50%);
+    z-index: 100; 
+}
+
+.carousel-button:hover {
+    color: #1e3a8a;
+}
+
+.prev-button {
+    left: -0.5%; 
+}
+
+.next-button {
+    right: -0.5%;
 }
