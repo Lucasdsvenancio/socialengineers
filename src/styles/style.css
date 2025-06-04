@@ -1,8 +1,8 @@
 /* Configurações gerais */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 1vw;
+    padding: 2vw;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ section {
 h2 {
     margin-top: 0;
     color: #1e40af;
-    font-size: 2vw;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -51,7 +51,7 @@ header {
     height: 100vh;
     text-align: center;
     padding-top: 15vh;
-    padding-bottom: 20vh;
+    padding-bottom: 10vh;
     padding: 2vh;
 }
 
@@ -66,8 +66,6 @@ header {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    margin-bottom: 0px;
-    margin-top: 10px;
 }
 
 #scroll-into-definitions img {
@@ -77,6 +75,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 3rem;
 }
 
 #scroll-into-quiz {
@@ -90,7 +89,7 @@ header {
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 2vw;
+    font-size: 1.2rem;
 }
 
 /* Carousel Container */
@@ -126,7 +125,7 @@ header {
     max-width: 350px;
     min-width: 300px; 
     height: 95%;
-    margin-left: -150px;
+    margin-left: calc(-150px - 2.8%);
     opacity: 0;
     transition: all 0.5s ease;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -300,13 +299,13 @@ header {
     background-color: transparent; 
     color: #333;
     border: none;
-    font-size: 2.5vw; 
+    font-size: clamp(2rem, 3vw, 3rem); 
     cursor: pointer;
     pointer-events: auto;
     padding: 10px; 
     transition: color 0.3s ease;
     position: absolute;
-    top: 35%;
+    top: 40%;
     transform: translateY(-50%);
     z-index: 100; 
 }
