@@ -88,7 +88,21 @@
         </section>
 
         <section id="quiz">
-            <!-- Quiz cards criados dinamicamente via JS -->
+            <div id="start_quiz_div">
+                <h2>Vamos testar seu conhecimento?</h2>
+                <button onclick="start_quiz()">Começar Quiz</button>
+                <label class="switch">
+                    <input id="run_type_slider" type="checkbox" onchange="toggle_run_type(this.checked)">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div id="quiz_container">
+                                
+            </div>
+            <div id="score_container" style="display: none;">
+                <h2>Resultado do Quiz</h2>
+                <p id="quiz_result">Pontuação</p>
+                <button onclick="reset_quiz()">Reiniciar Quiz</button>
         </section>  
 
         <section id="alternating-info-section">

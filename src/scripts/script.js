@@ -1,21 +1,3 @@
-let questions = [];
-fetch("./questions.csv")
-    .then(response => response.text())
-    .then(data => {
-        const lines = data.trim().split("\n");
-        lines.forEach(line => {
-            const [question, correctAnswer, incorrectAnswer] = line.split(",");
-            questions.push({
-                question: question,
-                correctAnswer: correctAnswer,
-                incorrectAnswer: incorrectAnswer
-            });
-        });
-    })
-    .catch(error => {
-        console.error("Erro ao carregar o arquivo CSV:", error);
-    });
-
 // Scroll suave para as seções
 document.getElementById("scroll-into-definitions").addEventListener("click", function() {
     document.getElementById("definitions").scrollIntoView({ behavior: "smooth" });
@@ -69,59 +51,112 @@ document.querySelector('.prev-button').addEventListener('click', prevCard);
 updateCarousel();
 
 // Quiz
-
-quiz = document.getElementById("quiz")
-
-// Espera a função fetch executar antes de criar o card
-function waitForFetch() {
-    return new Promise((resolve) => {
-        const interval = setInterval(() => {
-            if (questions.length > 0) {
-                clearInterval(interval);
-                resolve();
-            }
-        }, 100);
-    });
-}
-waitForFetch().then(() => {
-    // Cria o card
-    create_new_card();
-});
-
-var questions_made = []
+var questions_made = [];
+var max_questions = 4;
+const start_quiz_div = document.getElementById("start_quiz_div");
+const quiz_container = document.getElementById("quiz_container");
+var run_type = 1; // 1 = sequencial, 2 = único
+var n_questions = 1;
 var points = 0;
 
-function create_new_card(correct) {
-    if (correct === 1) {
-        points += 1;
-        console.log("Acertou! Pontos: " + points);
-    }
-    // Limpa conteudo do quiz
-    quiz.innerHTML = "<h2>Vamos testar seu conhecimento?</h2>";
-    // Cria um novo card
-    const newCard = document.createElement("div");
-    newCard.className = "quiz-card";
-    // Faz com que o nome da pergunta seja aleatório
-    var randomIndex = 0;
-    for (let i = 0; i < questions.length; i++) {
-        var index = Math.floor(Math.random() * questions.length)
-        if (!(index  in questions_made)) {
-            randomIndex = index;
-            break;
-        }
-    }
-    const question = questions[randomIndex].question;
-    const correctAnswer = questions[randomIndex].correctAnswer;
-    const incorrectAnswer = questions[randomIndex].incorrectAnswer;
-    newCard.innerHTML = `
-        <h2>${question}</h2>
-        <div class="quiz-image-container">
-            <img src="./assets/${correctAnswer}.jpg" class="quiz-image" onclick="create_new_card(1)">
-            <img src="./assets/${incorrectAnswer}.jpg" class="quiz-image" onclick="create_new_card(0)">
-        </div>
-    `
+async function fetchQuestions() {
+    try {
+        const response = await fetch("./questions.csv")
+        const data = await response.text();
+        const lines = data.trim().split("\n");
+        var questions = [];
+        lines.forEach(line => {
+            const [question, correctAnswer, incorrectAnswer] = line.split(",");
+            questions.push({
+                question: question,
+                correctAnswer: correctAnswer,
+                incorrectAnswer: incorrectAnswer
+            });
+        });
+        const questions_made = [];
+        const questions_added = new Set();
 
-    // Adiciona o card ao quiz
-    quiz.appendChild(newCard);
-    return newCard;
+        while (questions_made.length < max_questions && questions_added.size < questions.length) {
+            const index = Math.floor(Math.random() * questions.length);
+            if (!questions_added.has(index)) {
+                questions_added.add(index);
+                questions_made.push(questions[index]);
+            }
+        }
+        return questions_made;
+    } catch (error) {
+        console.error("Erro ao buscar as perguntas:", error);
+        return [];
+    }
+}
+
+async function start_quiz() {
+    // Cria um novo card
+    const questions = await fetchQuestions();
+    start_quiz_div.style.display = "none";
+    for (let i = 1; i <= max_questions; i++) {
+        const question = questions[i - 1]
+        const newCard = document.createElement("div");
+        newCard.id = `question-${i}`;
+        newCard.className = "quiz-card";
+        newCard.innerHTML += `<h2>Pergunta ${i} - ${question.question}</h2>`;
+        
+        const correctAnswer = `
+            <img src="./assets/${question.correctAnswer}.jpg" class="quiz-image" onclick="answer_question(1, ${i})">
+        `;
+        const incorrectAnswer = `
+            <img src="./assets/${question.incorrectAnswer}.jpg" class="quiz-image" onclick="answer_question(0, ${i})">
+        `;
+        const image_container = `<div class="quiz-image-container">`;
+        const randomImage = Math.floor(Math.random() * 2);
+        if (randomImage === 0) {
+            newCard.innerHTML += image_container + correctAnswer + incorrectAnswer + '</div>';
+        } else {
+            newCard.innerHTML += image_container + incorrectAnswer + correctAnswer + '</div>';
+        }
+        quiz.appendChild(newCard); 
+    }
+    create_new_card(n_questions);
+}
+
+function create_new_card(number) {
+    if (number <= max_questions) {
+        if (run_type === 1) {
+            const questionCard = document.getElementById(`question-${number}`)
+            questionCard.style.display = "block";    
+        } else {
+            for (let i = 1; i < number; i++) {
+                const questionCard = document.getElementById(`question-${i}`);
+                questionCard.style.display = "none";
+            }
+            const questionCard = document.getElementById(`question-${number}`);
+            questionCard.style.display = "block";
+        }
+    } else {
+        const final_question = document.getElementById(`question-${number - 1}`);
+        final_question.style.display = "none";
+        start_quiz_div.innerHTML = `
+            <h2>Quiz terminado! Você fez ${points} pontos!</h2>
+            <button onclick="start_quiz()">Reiniciar Quiz</button>
+        `;
+        start_quiz_div.style.display = "block";
+        // start_quiz_div.style.display = "block";
+        n_questions = 1;
+        points = 0;
+    }    
+}
+
+function answer_question(correct, question) {
+    if (question === n_questions){
+        if (correct === 1) {
+            points += 1;
+            console.log("Acertou! Pontos: " + points);
+        }
+        n_questions += 1;
+        create_new_card(n_questions);
+    }
+}
+
+function toggle_run_type(type) {
+    run_type = type;
 }
