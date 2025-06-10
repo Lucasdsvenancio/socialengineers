@@ -75,9 +75,33 @@ let questions_made = [];
 let max_questions = 4;
 const start_quiz_div = document.getElementById("start_quiz_div");
 const quiz_container = document.getElementById("quiz_container");
+const info_container = document.getElementById("info-container");
 let run_type = false;
 let n_questions = 1;
 let points = 0;
+
+async function fetchQuestionsInfo() {
+    try {
+        const response = await fetch("./question-info.csv");
+        const data = await response.text();
+        const lines = data.trim().split("\n");
+        let questionsInfo = [];
+        lines.forEach(line => {
+            const [question, image, info] = line.split(",");
+            questionsInfo.push({
+                question: question,
+                image: image,
+                info: info
+            });
+        });
+
+        return questionsInfo;
+
+    } catch (error) {
+        console.error("Erro ao buscar as informações das perguntas:", error);
+        return [];
+    }
+}
 
 async function fetchQuestions() {
     try {
@@ -116,6 +140,7 @@ async function fetchQuestions() {
 
 async function start_quiz() {
     const questions = await fetchQuestions();
+    const questionsInfo = await fetchQuestionsInfo();
     start_quiz_div.style.display = "none";
     for (let i = 1; i <= max_questions; i++) {
         const question = questions[i - 1];
@@ -147,6 +172,27 @@ async function start_quiz() {
                 correctAnswer + "</div>";
         }
         quiz.appendChild(newCard);
+
+        info = questionsInfo
+            .filter(info => info.question === question.question)[0];
+
+        if (info != null) {
+            const rowClass = i % 2 === 0 ? "info-row" : "info-row reverse";
+
+            const rowHTML = `
+            <div class="${rowClass}">
+                <div class="info-card-content">
+                <img src="./assets/${info.image}.jpg"
+                class="info-card-image">
+                </div>
+                <div class="info-text-content">
+                <p>${info.info}</p>
+                </div>
+            </div>
+            `;
+
+            info_container.insertAdjacentHTML("beforeend", rowHTML);
+        }
     }
     create_new_card(n_questions);
 }
