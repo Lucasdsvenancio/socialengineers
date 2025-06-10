@@ -151,12 +151,12 @@ async function start_quiz() {
             `<h2>Pergunta ${i} - ${question.question}</h2>`;
 
         const correctAnswer = `
-            <img src="./assets/${question.correctAnswer}.jpg"
+            <img src="./assets/${question.correctAnswer}.png"
                 class="quiz-image"
                 onclick="answer_question(true, ${i})">
         `;
         const incorrectAnswer = `
-            <img src="./assets/${question.incorrectAnswer}.jpg"
+            <img src="./assets/${question.incorrectAnswer}.png"
                 class="quiz-image"
                 onclick="answer_question(false, ${i})">
         `;
@@ -182,7 +182,7 @@ async function start_quiz() {
             const rowHTML = `
             <div class="${rowClass}">
                 <div class="info-card-content">
-                <img src="./assets/${info.image}.jpg"
+                <img src="./assets/${info.image}.png"
                 class="info-card-image">
                 </div>
                 <div class="info-text-content">
