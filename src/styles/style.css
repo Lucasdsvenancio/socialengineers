@@ -1,6 +1,6 @@
 /* Configurações gerais */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 1vw;
     padding: 2vw;
     line-height: 1.6;
@@ -16,10 +16,12 @@ body {
 }
 
 h1 {
-    font-size: 5vw;
-    width: 100%;
-    height: 50%;
-    color: #1e3a8a;
+    font-family: 'Lora', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 40px;
+    color: #212529;
 }
 
 main {
@@ -45,17 +47,69 @@ p {
     color: #1e3a8a;
     font-size: 1.2rem;
 }
+.palavra-sobreposta {
+    position: relative;
+    color: #212529;
+    transition: color 0.4s ease;
+    cursor: pointer;
+}
 
+
+.palavra-sobreposta::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 2px;
+    left: -2px;
+    color: rgba(25, 118, 210, 0.3);
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+
+.palavra-sobreposta:hover {
+    color: #1976D2;
+}
+
+.palavra-sobreposta:hover::before {
+    top: 0;
+    left: 0;
+    color: rgba(25, 118, 210, 0.1); /
+}
 header {
     height: 100vh;
     text-align: center;
     padding-top: 15vh;
     padding-bottom: 10vh;
     padding: 2vh;
+    max-width: 600px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}
+.header-container{
+    align-items: center;
 }
 
 /* Botões */
+.arrow-icon {
 
+    width: 40px;
+    height: 40px;
+    animation: bounce 2s infinite; 
+}
+
+/* Animação para a seta */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
 #scroll-into-definitions {
     border: none;
     background-color: transparent;
