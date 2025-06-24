@@ -1,3 +1,4 @@
+
 // Scroll suave para as seções
 document
     .getElementById("scroll-into-definitions")

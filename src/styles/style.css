@@ -1,4 +1,12 @@
 /* Configurações gerais */
+:root {
+    --secondary-text-color: #495057;
+    --accent-color: #1976D2;
+    --card-bg: #FFFFFF;
+    --border-color: #DEE2E6;
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Lora', serif;
+}
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 1vw;
@@ -159,8 +167,8 @@ header {
     position: relative;
     align-content: center;
     align-items: center;
-    width: 50vw; 
-    height: 60vh; 
+    width: 50vw;
+    height: 60vh;
     margin: 0 auto;
     margin-bottom: 5vh;
     margin-top: 5vh;
@@ -182,9 +190,9 @@ header {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 40vw; 
+    width: 40vw;
     max-width: 350px;
-    min-width: 300px; 
+    min-width: 300px;
     height: 95%;
     margin-left: calc(-150px - 2.8%);
     opacity: 0;
@@ -228,7 +236,10 @@ header {
     color: #1e3a8a;
     font-size: 0.9rem;
 }
-
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
 .description {
     font-size: 15px;
     box-sizing: border-box;
@@ -340,10 +351,23 @@ input:checked + .slider:before {
 
 .quiz-image{
     flex: 1;
-    max-width: 30%;
-    margin: 0 5%;
-    border: #b0b0b0 3px solid;
-    height: auto;
+    min-width: 300px;
+    max-width: 450px;
+    background-color: #FFFFFF;
+    border: 1px solid #DEE2E6;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+
+
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.quiz-image:hover{
+    transform: translateY(-8px);
+    border-color: #1976D2;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
 }
 
 #alternating-info-section {
@@ -353,16 +377,16 @@ input:checked + .slider:before {
     box-sizing: border-box;
 }
 
-#alternating-info-section h2 { 
+#alternating-info-section h2 {
     text-align: center;
     color: #1e40af;
-    font-size: 2vw; 
+    font-size: 2vw;
     margin-bottom: 50px;
 }
 
 .info-row {
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: space-between;
     width: 85%;
     max-width: 1200px;
@@ -409,14 +433,14 @@ input:checked + .slider:before {
 }
 
 .info-row .info-text-content {
-    flex: 1; 
+    flex: 1;
     padding: 15px;
     min-width: 280px;
 }
 
 .info-row .info-text-content p {
     color: #1e3a8a;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     line-height: 1.7;
 }
 
@@ -425,32 +449,56 @@ input:checked + .slider:before {
 }
 
 /* Botões do Carrossel */
+
 .carousel-button {
-    background-color: transparent; 
-    color: #333;
-    border: none;
-    font-size: clamp(2rem, 3vw, 3rem); 
-    cursor: pointer;
-    pointer-events: auto;
-    padding: 10px; 
-    transition: color 0.3s ease;
+
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
     position: absolute;
-    top: 40%;
+    top: 50%;
     transform: translateY(-50%);
-    z-index: 100; 
+    z-index: 100;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-button svg {
+    color: var(--secondary-text-color);
+    transition: color 0.3s ease;
 }
 
 .carousel-button:hover {
-    color: #1e3a8a;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-50%) scale(1.08);
+
+
+    box-shadow: 0 0 20px rgba(25, 118, 210, 0.5);
+}
+
+.carousel-button:hover svg {
+    color: var(--card-bg);
 }
 
 .prev-button {
-    left: -0.5%; 
+    left: -0.5%;
 }
 
 .next-button {
     right: -0.5%;
 }
+
 
 /* More Information */
 
@@ -460,7 +508,7 @@ input:checked + .slider:before {
 
 .more-info-row {
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: space-between;
     width: 85%;
     max-width: 1200px;
@@ -521,3 +569,4 @@ input:checked + .slider:before {
 .more-info-card .text {
     flex: 1;
 }
+
