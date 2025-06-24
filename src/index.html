@@ -6,12 +6,20 @@
     <meta name="description" content="Descrição da página">
     <title>Projeto Social Engineers</title>
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <script src="./scripts/script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Você sabe identificar um padrão manipulativo?</h1>
-        <button id="scroll-into-definitions"><img src="./assets/down-arrow.png" alt="Redireciona a tela para a seção de definições"></button>
+        <div class="header-container">
+        <h1>Você sabe identificar um padrão <span class="palavra-sobreposta" data-text="manipulativo?">manipulativo?</span></h1>
+        <button id="scroll-into-definitions">
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg></button>
+            </div>
     </header>
 
     <main>
@@ -79,12 +87,16 @@
                             Urgência falsa cria um senso de tempo limitado que não é genuíno (por exemplo, "apenas X itens restantes" quando o estoque é abundante ou "oferta termina hoje" quando é recorrente). Isso pressiona os usuários a tomar decisões rápidas sem avaliar totalmente suas opções.
                         </p>
                     </div>
-                    
+
                 </div>
-                <button class="carousel-button prev-button" aria-label="Card anterior">&#10094;</button>
-                <button class="carousel-button next-button" aria-label="Próximo card">&#10095;</button>
+                <button class="carousel-button prev-button" aria-label="Card anterior">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="carousel-button next-button" aria-label="Próximo card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
             </div>
-            <button id="scroll-into-quiz">Estou pronto pra aprender mais!</button>
+            <button id="scroll-into-quiz">Estou pronto para aprender mais!</button>
         </section>
 
         <section id="quiz">
@@ -97,14 +109,14 @@
                 </label>
             </div>
             <div id="quiz_container">
-                                
+
             </div>
             <div id="score_container" style="display: none;">
                 <h2>Resultado do Quiz</h2>
                 <p id="quiz_result">Pontuação</p>
                 <button onclick="reset_quiz()">Reiniciar Quiz</button>
             </div>
-        </section>  
+        </section>
 
         <section id="alternating-info-section">
             <h2> Explicações sobre o Quiz</h2>
@@ -150,6 +162,13 @@
                         <p>Essa página do Instituto de Defesa de Consumidores (Idec) explica o que são os padrões manipulativos, demonstra exemplos de algumas das suas classificações e traz como a legislação brasileira trata esses padrões perante o Código de Defesa do Consumidor e a Lei Geral de Proteção de Dados.</p>
                     </div>
                 </div>
+            </div>
+            <div class="container-back_top">
+                <button id="back-to-top-btn" aria-label="Voltar ao topo" title="Voltar ao topo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                </button>
             </div>
         </section>
     </main>

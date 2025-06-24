@@ -1,3 +1,4 @@
+
 // Scroll suave para as seções
 document
     .getElementById("scroll-into-definitions")
@@ -240,3 +241,32 @@ function answer_question(correct, question) {
 function toggle_run_type(type) {
     run_type = type;
 }
+// botao back to top
+document.addEventListener("DOMContentLoaded", function() {
+
+    const backToTopBtn = document.getElementById("back-to-top-btn");
+
+
+    if (!backToTopBtn) return;
+
+
+    window.onscroll = function() {
+
+        let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+
+        if (scrollPosition > 300) {
+            backToTopBtn.classList.add("show");
+        } else {
+            backToTopBtn.classList.remove("show");
+        }
+    };
+
+
+    backToTopBtn.onclick = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+});
