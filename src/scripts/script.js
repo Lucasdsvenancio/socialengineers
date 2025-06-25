@@ -77,7 +77,7 @@ let max_questions = 4;
 const start_quiz_div = document.getElementById("start_quiz_div");
 const quiz_container = document.getElementById("quiz_container");
 const info_container = document.getElementById("info-container");
-// let n_questions = 1;
+let n_questions = 1;
 let points = 0;
 
 async function fetchQuestions() {
@@ -118,28 +118,32 @@ async function start_quiz() {
     //     newCard.innerHTML +=
     //         `<h2>Pergunta ${i} - ${question.question}</h2>`;
 
-    //     const correctAnswer = `
-    //         <img src="./assets/${question.correctAnswer}.png"
-    //             class="quiz-image"
-    //             onclick="answer_question(true, ${i})">
-    //     `;
-    //     const incorrectAnswer = `
-    //         <img src="./assets/${question.incorrectAnswer}.png"
-    //             class="quiz-image"
-    //             onclick="answer_question(false, ${i})">
-    //     `;
-    //     const image_container = `<div class="quiz-image-container">`;
-    //     const randomImage = Math.floor(Math.random() * 2);
-    //     if (randomImage === 0) {
-    //         newCard.innerHTML +=
-    //             image_container + correctAnswer +
-    //             incorrectAnswer + "</div>";
-    //     } else {
-    //         newCard.innerHTML +=
-    //             image_container + incorrectAnswer +
-    //             correctAnswer + "</div>";
-    //     }
-    //     quiz.appendChild(newCard);
+        const correctAnswer = `
+            <img src="./assets/${question.correctAnswer}.png"
+                class="quiz-image"
+                onclick="answer_question(true, ${i})">
+        `;
+        const incorrectAnswer = `
+            <img src="./assets/${question.incorrectAnswer}.png"
+                class="quiz-image"
+                onclick="answer_question(false, ${i})">
+        `;
+        const image_container = `<div class="quiz-image-container">`;
+        const randomImage = Math.floor(Math.random() * 2);
+        if (randomImage === 0) {
+            newCard.innerHTML +=
+                image_container + 
+                `<div style="margin: 1vw 1.5vw 0;">${correctAnswer}</div>` +
+                `<div style="margin: 1vw 1.5vw 0;">${incorrectAnswer}</div>` + 
+                "</div>";
+        } else {
+            newCard.innerHTML +=
+                image_container + 
+                `<div style="margin: 1vw 1.5vw 0;">${incorrectAnswer}</div>` +
+                `<div style="margin: 1vw 1.5vw 0;">${correctAnswer}</div>` + 
+                "</div>";
+        }
+        quiz.appendChild(newCard);
 
     //     info = questionsInfo
     //         .filter(info => info.question === question.question)[0];
@@ -184,9 +188,39 @@ function create_new_card(question_n) {
             document.getElementById(`question-${question_n - 1}`);
         final_question.style.display = "none";
         start_quiz_div.innerHTML = `
-            <h2>Quiz terminado! Você fez ${points} pontos!</h2>
-            <button onclick="location.reload()">Reiniciar Quiz</button>
-        `;
+                            <h2 style="text-align: center; margin-top: 20vh;">Quiz terminado!</h2>
+                            <h3 style="text-align: center;">Você fez <b>${points}</b> pontos!</h3>
+                            <div style="display: flex; justify-content: center; margin: 20px 0;">
+                                <div style="width: 75%; height: 12vh; background-color: #f3f3f3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <div style="width: ${(points / 5) * 100}%; height: 1000%; background: linear-gradient(90deg,rgb(104, 175, 76), #81c784); transition: width 0.5s ease;"></div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 5vh;">
+                                <button id = "restart_quiz" onclick="location.reload()" style="padding: 10px 20px; font-size: 16px; background-color: #1976D2; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                                    Reiniciar Quiz
+                                </button>
+                            </div>
+                        `;
+        const scrollIntoQuizButton = document.getElementById("restart_quiz");
+        scrollIntoQuizButton.style.display = "flex";
+        scrollIntoQuizButton.style.margin = "0 auto 10vh auto";
+        scrollIntoQuizButton.style.justifyContent = "center";
+        scrollIntoQuizButton.style.width = "35vw";
+        scrollIntoQuizButton.style.backgroundColor = "#3b82f6";
+        scrollIntoQuizButton.style.color = "white";
+        scrollIntoQuizButton.style.border = "none";
+        scrollIntoQuizButton.style.padding = "18px 36px";
+        scrollIntoQuizButton.style.borderRadius = "16px";
+        scrollIntoQuizButton.style.cursor = "pointer";
+        scrollIntoQuizButton.style.fontSize = "1.2rem";
+        scrollIntoQuizButton.style.boxShadow = "0 5px 0 #1d4ed8";
+        scrollIntoQuizButton.style.transition = "all 0.1s ease-in-out";
+
+        scrollIntoQuizButton.addEventListener("mouseover", () => {
+            scrollIntoQuizButton.style.transform = "translateY(-2px)";
+            scrollIntoQuizButton.style.boxShadow = "0 7px 0 #1d4ed8";
+        });
+
         start_quiz_div.style.display = "block";
         n_questions = 1;
         points = 0;
