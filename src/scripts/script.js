@@ -72,53 +72,18 @@ document
 updateCarousel();
 
 // Quiz
-let questions_made = [];
+let questions = [];
 let max_questions = 4;
 const start_quiz_div = document.getElementById("start_quiz_div");
 const quiz_container = document.getElementById("quiz_container");
 const info_container = document.getElementById("info-container");
-let run_type = false;
-let n_questions = 1;
+// let n_questions = 1;
 let points = 0;
-
-async function fetchQuestionsInfo() {
-    try {
-        const response = await fetch("./question-info.csv");
-        const data = await response.text();
-        const lines = data.trim().split("\n");
-        let questionsInfo = [];
-        lines.forEach(line => {
-            const [question, image, info] = line.split(",");
-            questionsInfo.push({
-                question: question,
-                image: image,
-                info: info
-            });
-        });
-
-        return questionsInfo;
-
-    } catch (error) {
-        console.error("Erro ao buscar as informações das perguntas:", error);
-        return [];
-    }
-}
 
 async function fetchQuestions() {
     try {
-        const response = await fetch("./questions.csv");
-        const data = await response.text();
-        const lines = data.trim().split("\n");
-        let questions = [];
-        lines.forEach(line => {
-            const [question, correctAnswer, incorrectAnswer] =
-                line.split(",");
-            questions.push({
-                question: question,
-                correctAnswer: correctAnswer,
-                incorrectAnswer: incorrectAnswer
-            });
-        });
+        const response = await fetch("./questions.json");
+        const questions = await response.json();
         const questions_made = [];
         const questions_added = new Set();
 
@@ -140,83 +105,83 @@ async function fetchQuestions() {
 }
 
 async function start_quiz() {
-    const questions = await fetchQuestions();
-    const questionsInfo = await fetchQuestionsInfo();
+    questions = await fetchQuestions();
     start_quiz_div.style.display = "none";
-    for (let i = 1; i <= max_questions; i++) {
-        const question = questions[i - 1];
-        const newCard = document.createElement("div");
-        newCard.id = `question-${i}`;
-        newCard.className = "quiz-card";
-        newCard.innerHTML +=
-            `<h2>Pergunta ${i} - ${question.question}</h2>`;
+    // for (let i = 1; i <= max_questions; i++) {
+    //     const question = questions[i - 1];
+    //     const newCard = document.createElement("div");
+    //     const perguntaMultipla = document.getElementById("pergunta-multipla");
 
-        const correctAnswer = `
-            <img src="./assets/${question.correctAnswer}.png"
-                class="quiz-image"
-                onclick="answer_question(true, ${i})">
-        `;
-        const incorrectAnswer = `
-            <img src="./assets/${question.incorrectAnswer}.png"
-                class="quiz-image"
-                onclick="answer_question(false, ${i})">
-        `;
-        const image_container = `<div class="quiz-image-container">`;
-        const randomImage = Math.floor(Math.random() * 2);
-        if (randomImage === 0) {
-            newCard.innerHTML +=
-                image_container + correctAnswer +
-                incorrectAnswer + "</div>";
-        } else {
-            newCard.innerHTML +=
-                image_container + incorrectAnswer +
-                correctAnswer + "</div>";
-        }
-        quiz.appendChild(newCard);
+    //     perguntaMultipla.textContent = `Pergunta ${i} - ${question.question}`;
+    //     newCard.id = `question-${i}`;
+    //     newCard.className = "quiz-card";
+    //     newCard.innerHTML +=
+    //         `<h2>Pergunta ${i} - ${question.question}</h2>`;
 
-        info = questionsInfo
-            .filter(info => info.question === question.question)[0];
+    //     const correctAnswer = `
+    //         <img src="./assets/${question.correctAnswer}.png"
+    //             class="quiz-image"
+    //             onclick="answer_question(true, ${i})">
+    //     `;
+    //     const incorrectAnswer = `
+    //         <img src="./assets/${question.incorrectAnswer}.png"
+    //             class="quiz-image"
+    //             onclick="answer_question(false, ${i})">
+    //     `;
+    //     const image_container = `<div class="quiz-image-container">`;
+    //     const randomImage = Math.floor(Math.random() * 2);
+    //     if (randomImage === 0) {
+    //         newCard.innerHTML +=
+    //             image_container + correctAnswer +
+    //             incorrectAnswer + "</div>";
+    //     } else {
+    //         newCard.innerHTML +=
+    //             image_container + incorrectAnswer +
+    //             correctAnswer + "</div>";
+    //     }
+    //     quiz.appendChild(newCard);
 
-        if (info != null) {
-            const rowClass = i % 2 === 0 ? "info-row" : "info-row reverse";
+    //     info = questionsInfo
+    //         .filter(info => info.question === question.question)[0];
 
-            const rowHTML = `
-            <div class="${rowClass}">
-                <div class="info-card-content">
-                <img src="./assets/${info.image}.png"
-                class="info-card-image">
-                </div>
-                <div class="info-text-content">
-                <p>${info.info}</p>
-                </div>
-            </div>
-            `;
+    //     if (info != null) {
+    //         const rowClass = i % 2 === 0 ? "info-row" : "info-row reverse";
 
-            info_container.insertAdjacentHTML("beforeend", rowHTML);
-        }
-    }
-    create_new_card(n_questions);
+    //         const rowHTML = `
+    //         <div class="${rowClass}">
+    //             <div class="info-card-content">
+    //             <img src="./assets/${info.image}.png"
+    //             class="info-card-image">
+    //             </div>
+    //             <div class="info-text-content">
+    //             <p>${info.info}</p>
+    //             </div>
+    //         </div>
+    //         `;
+
+    //         info_container.insertAdjacentHTML("beforeend", rowHTML);
+    //     }
+    // }
+    create_new_card(1);
 }
 
-function create_new_card(number) {
-    if (number <= max_questions) {
-        if (run_type) {
-            const questionCard =
-                document.getElementById(`question-${number}`);
-            questionCard.style.display = "block";
-        } else {
-            for (let i = 1; i < number; i++) {
-                const questionCard =
-                    document.getElementById(`question-${i}`);
-                questionCard.style.display = "none";
-            }
-            const questionCard =
-                document.getElementById(`question-${number}`);
-            questionCard.style.display = "block";
+function create_new_card(question_n) {
+    if (question_n <= max_questions) {
+        const question = questions[question_n - 1];
+        if (question['Modo'] === "Multiplo") {
+            const div_pergunta_multipla = document.getElementById("pergunta-multipla");
+            const h2_pergunta_multipla = document.getElementById("pergunta-multipla-texto");
+            const img_pergunta_multipla = document.getElementById("pergunta-multipla-imagem");
+            const resposta_1_pergunta_multipla = document.getElementById("pergunta-multipla-tipo-1");
+            const resposta_2_pergunta_multipla = document.getElementById("pergunta-multipla-tipo-2");
+            const resposta_3_pergunta_multipla = document.getElementById("pergunta-multipla-tipo-3");
+            div_pergunta_multipla.style.display = "block";
+            h2_pergunta_multipla.textContent = `Pergunta ${question_n} - ${question.Pergunta}`;
+            img_pergunta_multipla.src = `./assets/${question.Imagem}`;
         }
     } else {
         const final_question =
-            document.getElementById(`question-${number - 1}`);
+            document.getElementById(`question-${question_n - 1}`);
         final_question.style.display = "none";
         start_quiz_div.innerHTML = `
             <h2>Quiz terminado! Você fez ${points} pontos!</h2>
@@ -238,11 +203,8 @@ function answer_question(correct, question) {
     }
 }
 
-function toggle_run_type(type) {
-    run_type = type;
-}
 // botao back to top
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     const backToTopBtn = document.getElementById("back-to-top-btn");
 
@@ -250,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!backToTopBtn) return;
 
 
-    window.onscroll = function() {
+    window.onscroll = function () {
 
         let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
@@ -263,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
 
-    backToTopBtn.onclick = function() {
+    backToTopBtn.onclick = function () {
         window.scrollTo({
             top: 0,
             behavior: "smooth"

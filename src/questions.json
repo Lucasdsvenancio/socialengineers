@@ -1,0 +1,100 @@
+[
+    {
+        "Modo": "Imagens",
+        "Pergunta": "Qual é um exemplo de Fake Scarcity?",
+        "Imagens": [],
+        "Alternativas": [
+            "Fake_Scarcity",
+            "Hidden_Costs"
+        ],
+        "Resposta": "Fake_Scarcity",
+        "Explicacao": "Fake Scarcity é uma tática de marketing onde a escassez é criada artificialmente para induzir os consumidores a comprar rapidamente, mesmo que o produto esteja amplamente disponível."
+    },
+    {
+        "Modo": "Multiplo",
+        "Pergunta": "Qual padrão manipulativo mais representa essa imagem?",
+        "Imagens": [
+            ".assets/Fake_Scarcity.png"
+        ],
+        "Alternativas": [
+            "Fake Scarcity",
+            "Hidden Costs",
+            "Disguised Ads",
+            "Fake Social Proof"
+        ],
+        "Resposta": "Fake Scarcity",
+        "Explicacao": "A imagem representa uma tática de Fake Scarcity, onde a escassez é criada artificialmente para induzir os consumidores a agir rapidamente."
+    },
+    {
+        "Modo": "Imagens",
+        "Pergunta": "Qual é um exemplo de Fake Scarcity?",
+        "Imagem": "",
+        "Alternativas": [
+            "Fake_Scarcity",
+            "Hidden_Costs"
+        ],
+        "Resposta": "Fake_Scarcity",
+        "Explicacao": "Fake Scarcity é uma tática de marketing onde a escassez é criada artificialmente para induzir os consumidores a comprar rapidamente, mesmo que o produto esteja amplamente disponível."
+    },
+    {
+        "Modo": "Multiplo",
+        "Pergunta": "Qual padrão manipulativo mais representa essa imagem?",
+        "Imagem": ".assets/Fake_Scarcity.png",
+        "Alternativas": [
+            "Fake Scarcity",
+            "Hidden Costs",
+            "Disguised Ads",
+            "Fake Social Proof"
+        ],
+        "Resposta": "Fake Scarcity",
+        "Explicacao": "A imagem representa uma tática de Fake Scarcity, onde a escassez é criada artificialmente para induzir os consumidores a agir rapidamente."
+    },
+    {
+        "Modo": "Imagens",
+        "Pergunta": "Qual é um exemplo de Fake Scarcity?",
+        "Imagem": "",
+        "Alternativas": [
+            "Fake_Scarcity",
+            "Hidden_Costs"
+        ],
+        "Resposta": "Fake_Scarcity",
+        "Explicacao": "Fake Scarcity é uma tática de marketing onde a escassez é criada artificialmente para induzir os consumidores a comprar rapidamente, mesmo que o produto esteja amplamente disponível."
+    },
+    {
+        "Modo": "Multiplo",
+        "Pergunta": "Qual padrão manipulativo mais representa essa imagem?",
+        "Imagem": ".assets/Fake_Scarcity.png",
+        "Alternativas": [
+            "Fake Scarcity",
+            "Hidden Costs",
+            "Disguised Ads",
+            "Fake Social Proof"
+        ],
+        "Resposta": "Fake Scarcity",
+        "Explicacao": "A imagem representa uma tática de Fake Scarcity, onde a escassez é criada artificialmente para induzir os consumidores a agir rapidamente."
+    },
+    {
+        "Modo": "Imagens",
+        "Pergunta": "Qual é um exemplo de Fake Scarcity?",
+        "Imagem": "",
+        "Alternativas": [
+            "Fake_Scarcity",
+            "Hidden_Costs"
+        ],
+        "Resposta": "Fake_Scarcity",
+        "Explicacao": "Fake Scarcity é uma tática de marketing onde a escassez é criada artificialmente para induzir os consumidores a comprar rapidamente, mesmo que o produto esteja amplamente disponível."
+    },
+    {
+        "Modo": "Multiplo",
+        "Pergunta": "Qual padrão manipulativo mais representa essa imagem?",
+        "Imagem": ".assets/Fake_Scarcity.png",
+        "Alternativas": [
+            "Fake Scarcity",
+            "Hidden Costs",
+            "Disguised Ads",
+            "Fake Social Proof"
+        ],
+        "Resposta": "Fake Scarcity",
+        "Explicacao": "A imagem representa uma tática de Fake Scarcity, onde a escassez é criada artificialmente para induzir os consumidores a agir rapidamente."
+    }
+]
