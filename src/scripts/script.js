@@ -87,7 +87,9 @@ async function fetchQuestions() {
         const questions = await response.json();
         const questions_made = [];
         const questions_added = new Set();
-
+        if (max_questions > questions.length) {
+            max_questions = questions.length;
+        }
         while (
             questions_made.length < max_questions &&
             questions_added.size < questions.length
