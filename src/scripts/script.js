@@ -16,6 +16,17 @@ document
             .scrollIntoView({ behavior: "smooth" });
     });
 
+window.addEventListener('keydown', function (e) {
+    // Lista de teclas que causam rolagem
+    const keys = [
+        'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
+        'PageUp', 'PageDown', 'Home', 'End', ' '
+    ];
+    if (keys.includes(e.key)) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
 // Carousel
 const track = document.querySelector(".carousel-track");
 const cards = Array.from(track.children);

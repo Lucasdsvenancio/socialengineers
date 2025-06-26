@@ -140,26 +140,26 @@
 
         <section id="quiz">
             <div id="start_quiz_div">
-            <h2>Vamos testar seu conhecimento?</h2>
-            <button id="start_quiz_button" onclick="start_quiz()">Começar Quiz</button>
+                <h2>Vamos testar seu conhecimento?</h2>
+                <button id="start_quiz_button" onclick="start_quiz()">Começar Quiz</button>
             </div>
             <div id="quiz_container">
                 <div id="pergunta-multipla" style="display: none;">
                     <h2 id="pergunta-multipla-texto"></h2>
-                    <img id="pergunta-multipla-imagem" alt="Imagem da pergunta">
+                    <img id="pergunta-multipla-imagem" alt="Imagem da pergunta" class="quiz-image">
                     <button id="pergunta-multipla-tipo-1"></button>
                     <button id="pergunta-multipla-tipo-2"></button>
                     <button id="pergunta-multipla-tipo-3"></button>
                 </div>
                 <div id="pergunta-verdadeiro-falso" style="display: none;">
                     <h2 id="pergunta-verdadeiro-falso-texto"></h2>
-                    <img id="pergunta-verdadeiro-falso-imagem-1">
-                    <img id="pergunta-verdadeiro-falso-imagem-2">
+                    <img id="pergunta-verdadeiro-falso-imagem-1" class="quiz-image">
+                    <img id="pergunta-verdadeiro-falso-imagem-2" class="quiz-image">
                 </div>
                 <div id="score_container" style="display: none;">
-                <h2>Resultado do Quiz</h2>
-                <p id="quiz_result">Pontuação</p>
-                <button onclick="reset_quiz()">Reiniciar Quiz</button>
+                    <h2>Resultado do Quiz</h2>
+                    <p id="quiz_result">Pontuação</p>
+                    <button onclick="reset_quiz()">Reiniciar Quiz</button>
                 </div>
         </section>
 
@@ -170,10 +170,11 @@
         </section>
 
         <section id="more-info-section">
-            <h2>Mais informações</h2>            
+            <h2>Mais informações</h2>
             <div class="more-info-row">
                 <div class="more-info-card more-info-card--video">
-                    <p>No vídeo abaixo, a designer Sally Woellner explica didaticamente os problemas dos padrões manipulativos.</p>
+                    <p>No vídeo abaixo, a designer Sally Woellner explica didaticamente os problemas dos padrões
+                        manipulativos.</p>
                     <iframe class="more-info-video" src="https://www.youtube.com/embed/lJUW0iZzAaQ"></iframe>
                 </div>
             </div>
