@@ -513,7 +513,7 @@ input:checked+.slider:before {
 /* More Information */
 
 #more-info-section {
-    height: auto;
+    height: 100vh;
 }
 
 .more-info-row {
@@ -541,7 +541,7 @@ input:checked+.slider:before {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1vw;
-    width: 60%;
+    width: 80%;
     aspect-ratio: 16 / 9;
     height: auto;
 }
@@ -584,13 +584,12 @@ input:checked+.slider:before {
     text-align: left;
 }
 
-#back-to-top-btn {
+/* Botões de navegação entre seções */
 
+.circle-btn {
     position: fixed;
-    bottom: 30px;
     right: 30px;
     z-index: 1000;
-
 
     background-color: var(--accent-color);
     color: var(--card-bg);
@@ -600,26 +599,67 @@ input:checked+.slider:before {
     height: 50px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 
-
     opacity: 0;
     visibility: hidden;
-    transform: translateY(20px);
+    transform: translateX(20px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-#back-to-top-btn.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+#back-to-top-btn {
+    bottom: 30px;
 }
 
-#back-to-top-btn:hover {
+#go-down-btn {
+    bottom: 90px;
+}
+
+#go-up-btn {
+    bottom: 150px;
+}
+
+.circle-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.circle-btn:hover {
     background-color: darkblue;
     transform: scale(1.1);
+}
+
+/* Links */
+
+#scroll-into-links{
+    display: flex;
+    margin: 0 auto 10vh auto;
+    justify-content: center;
+    width: 40vw;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 18px 36px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 0 #1d4ed8;
+    transition: all 0.1s ease-in-out;
+}
+#scroll-into-links:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #1d4ed8;
+}
+#scroll-into-links:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1d4ed8;
+}
+
+/* Footer */
+footer p{
+    text-align: center;
 }

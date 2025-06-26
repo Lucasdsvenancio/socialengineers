@@ -16,6 +16,14 @@ document
             .scrollIntoView({ behavior: "smooth" });
     });
 
+document
+    .getElementById("scroll-into-links")
+    .addEventListener("click", function () {
+        document
+            .getElementById("links-section")
+            .scrollIntoView({ behavior: "smooth" });
+    });
+
 window.addEventListener('keydown', function (e) {
     // Lista de teclas que causam rolagem
     const keys = [
@@ -238,32 +246,65 @@ function answer_question(question_n, answer) {
     create_new_card(question_n + 1);
 }
 
-// botao back to top
-document.addEventListener("DOMContentLoaded", function () {
-
+// botões back to top, go down e go up
+document.addEventListener("DOMContentLoaded", () => {
     const backToTopBtn = document.getElementById("back-to-top-btn");
+    const goDownBtn = document.getElementById("go-down-btn");
+    const goUpBtn = document.getElementById("go-up-btn");
 
+    const sections = Array.from(document.querySelectorAll("section[id]"));
+    let currentSectionIndex = 0;
 
-    if (!backToTopBtn) return;
+    const observerOptions = {
+        root: null,
+        threshold: 0.6
+    };
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                currentSectionIndex = sections.indexOf(entry.target);
+                updateButtonsVisibility();
+            }
+        });
+    }, observerOptions);
 
-    window.onscroll = function () {
+    sections.forEach(section => observer.observe(section));
 
-        let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    function updateButtonsVisibility() {
 
-
-        if (scrollPosition > 300) {
+        // goUpBtn e bactToTopBtn so visíveis a partir do quiz
+        if (currentSectionIndex > 0) {
+            goUpBtn.classList.add("show");
             backToTopBtn.classList.add("show");
         } else {
+            goUpBtn.classList.remove("show");
             backToTopBtn.classList.remove("show");
         }
-    };
 
+        // esconde goDownBtn na ultima tela
+        if (currentSectionIndex < sections.length - 1) {
+            goDownBtn.classList.add("show");
+        } else {
+            goDownBtn.classList.remove("show");
+        }
+    }
 
-    backToTopBtn.onclick = function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    };
+    goDownBtn.addEventListener("click", () => {
+        const nextIndex = currentSectionIndex + 1;
+        if (nextIndex < sections.length) {
+            sections[nextIndex].scrollIntoView({ behavior: "smooth" });
+        }
+    });
+
+    goUpBtn.addEventListener("click", () => {
+        const prevIndex = currentSectionIndex - 1;
+        if (prevIndex >= 0) {
+            sections[prevIndex].scrollIntoView({ behavior: "smooth" });
+        }
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 });

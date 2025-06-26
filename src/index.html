@@ -178,35 +178,32 @@
                     <iframe class="more-info-video" src="https://www.youtube.com/embed/lJUW0iZzAaQ"></iframe>
                 </div>
             </div>
+            <button id="scroll-into-links">Links de referência e informações do grupo</button>
+        </section>
 
+        <section id="links-section">
+            <h2>Links informativos</h2>
             <div class="more-info-row">
                 <div class="more-info-card">
                     <img src="https://cdn.prod.website-files.com/6412167c874d3b52f2a4d962/6418a7fc6e84619ffe1e883e_Favicon2.png"
                         alt="Logo do site Deceptive Design">
                     <div class="text">
                         <h3><a href="https://www.deceptive.design/">Deceptive Design</a></h3>
-                        <p>Página do idealizador do conceito Dr. Harry Brignull. Além da explicação, a página aborda os
-                            tipos de padrões manipulativos, como também o arcabouço jurídico existente nos EUA, Reino
-                            Unido e União Europeia. O site também tem uma seção para o "Hall da Vergonha", que
-                            exemplifica casos de designs manipulativos feitos por empresas famosas.</p>
+                        <p>A página aborda os tipos de padrões manipulativos, como também o arcabouço jurídico existente em outros países. 
+                        O site também tem o "Hall da Vergonha", que mostra casos de designs manipulativos feitos por grandes empresas.</p>
                     </div>
                 </div>
             </div>
-
             <div class="more-info-row">
                 <div class="more-info-card">
                     <img src="https://media.nngroup.com/static/img/favicon.ico" alt="Logo do site Nielsen Norman Group">
                     <div class="text">
                         <h3><a href="https://www.nngroup.com/articles/deceptive-patterns/">Deceptive Patterns in UX: How
                                 to Recognize and Avoid Them</a></h3>
-                        <p>O artigo da pesquisadora Maria Rosala esclarece o conceito e apresenta exemplos de tipos
-                            diferentes de padrões manipulativos. Ele ainda mostra uma breve história e como se deu a
-                            evolução dos padrões manipulativos. Assim como salienta como evitar os padrões manipulativos
-                            na etapa de desenvolvimento.</p>
+                        <p>O artigo apresenta o conceito e uma breve história e como se deu a evolução dos padrões manipulativos. Assim como salienta como evitar os padrões manipulativos na etapa de desenvolvimento.</p>
                     </div>
                 </div>
             </div>
-
             <div class="more-info-row">
                 <div class="more-info-card">
                     <img src="https://idec.org.br/sites/default/files/fav-idec.png"
@@ -215,18 +212,28 @@
                         <h3><a
                                 href="https://idec.org.br/dicas-e-direitos/deceptive-patterns-voce-ja-ouviu-falar-de-padroes-enganosos">Deceptive
                                 patterns: você já ouviu falar de padrões enganosos?</a></h3>
-                        <p>Essa página do Instituto de Defesa de Consumidores (Idec) explica o que são os padrões
-                            manipulativos, demonstra exemplos de algumas das suas classificações e traz como a
-                            legislação brasileira trata esses padrões perante o Código de Defesa do Consumidor e a Lei
-                            Geral de Proteção de Dados.</p>
+                        <p>Essa página explica o que são os padrões manipulativos e traz como a legislação brasileira trata esses padrões perante o Código de Defesa do Consumidor e a Lei Geral de Proteção de Dados.</p>
                     </div>
                 </div>
             </div>
             <div class="container-back_top">
-                <button id="back-to-top-btn" aria-label="Voltar ao topo" title="Voltar ao topo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 19V5M5 12l7-7 7 7" />
+                <button id="back-to-top-btn" class="circle-btn" aria-label="Voltar ao topo" title="Voltar ao topo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff">
+                        <path d="M 12 2.0996094 L 1 12 L 4 12 L 4 21 L 11 21 L 11 15 L 13 15 L 13 21 L 20 21 L 20 12 L 23 12 L 12 2.0996094 z M 12 4.7910156 L 18 10.191406 L 18 11 L 18 19 L 15 19 L 15 13 L 9 13 L 9 19 L 6 19 L 6 10.191406 L 12 4.7910156 z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="container-go-up">
+                <button id="go-up-btn" class="circle-btn" aria-label="Subir" title="Subir">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="container-go-down">
+                <button id="go-down-btn" class="circle-btn" aria-label="Descer" title="Descer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,-1,0,0)">
+                        <path d="M12 19V5M5 12l7-7 7 7"/>
                     </svg>
                 </button>
             </div>
@@ -234,7 +241,8 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 Seu Nome. Todos os direitos reservados.</p>
+        <p>Projeto feito por Lucas S. Venancio, Luis Felipe Coelho, Gustavo Deda, Lucas Pio e Eduardo Brodzinski.</p>
+        <p>Desenvolvido em 2025 para a disciplina ICSM49 - Padrões Web.</p>
     </footer>
 </body>
 
