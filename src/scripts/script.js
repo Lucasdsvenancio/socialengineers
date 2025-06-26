@@ -75,6 +75,7 @@ updateCarousel();
 let questions = [];
 let max_questions = 4;
 const start_quiz_div = document.getElementById("start_quiz_div");
+const score_container = document.getElementById("score_container");
 const quiz_container = document.getElementById("quiz_container");
 const info_container = document.getElementById("info-container");
 let n_questions = 1;
@@ -86,7 +87,9 @@ async function fetchQuestions() {
         const questions = await response.json();
         const questions_made = [];
         const questions_added = new Set();
-
+        if (max_questions > questions.length) {
+            max_questions = questions.length;
+        }
         while (
             questions_made.length < max_questions &&
             questions_added.size < questions.length
@@ -107,134 +110,75 @@ async function fetchQuestions() {
 async function start_quiz() {
     questions = await fetchQuestions();
     start_quiz_div.style.display = "none";
-    // for (let i = 1; i <= max_questions; i++) {
-    //     const question = questions[i - 1];
-    //     const newCard = document.createElement("div");
-    //     const perguntaMultipla = document.getElementById("pergunta-multipla");
-
-    //     perguntaMultipla.textContent = `Pergunta ${i} - ${question.question}`;
-    //     newCard.id = `question-${i}`;
-    //     newCard.className = "quiz-card";
-    //     newCard.innerHTML +=
-    //         `<h2>Pergunta ${i} - ${question.question}</h2>`;
-
-        const correctAnswer = `
-            <img src="./assets/${question.correctAnswer}.png"
-                class="quiz-image"
-                onclick="answer_question(true, ${i})">
-        `;
-        const incorrectAnswer = `
-            <img src="./assets/${question.incorrectAnswer}.png"
-                class="quiz-image"
-                onclick="answer_question(false, ${i})">
-        `;
-        const image_container = `<div class="quiz-image-container">`;
-        const randomImage = Math.floor(Math.random() * 2);
-        if (randomImage === 0) {
-            newCard.innerHTML +=
-                image_container + 
-                `<div style="margin: 1vw 1.5vw 0;">${correctAnswer}</div>` +
-                `<div style="margin: 1vw 1.5vw 0;">${incorrectAnswer}</div>` + 
-                "</div>";
-        } else {
-            newCard.innerHTML +=
-                image_container + 
-                `<div style="margin: 1vw 1.5vw 0;">${incorrectAnswer}</div>` +
-                `<div style="margin: 1vw 1.5vw 0;">${correctAnswer}</div>` + 
-                "</div>";
-        }
-        quiz.appendChild(newCard);
-
-    //     info = questionsInfo
-    //         .filter(info => info.question === question.question)[0];
-
-    //     if (info != null) {
-    //         const rowClass = i % 2 === 0 ? "info-row" : "info-row reverse";
-
-    //         const rowHTML = `
-    //         <div class="${rowClass}">
-    //             <div class="info-card-content">
-    //             <img src="./assets/${info.image}.png"
-    //             class="info-card-image">
-    //             </div>
-    //             <div class="info-text-content">
-    //             <p>${info.info}</p>
-    //             </div>
-    //         </div>
-    //         `;
-
-    //         info_container.insertAdjacentHTML("beforeend", rowHTML);
-    //     }
-    // }
     create_new_card(1);
 }
 
+function reset_quiz() {
+    start_quiz_div.style.display = "block";
+    score_container.style.display = "none";
+}
+
+function random_order(N) {
+    const arr = Array.from({ length: N }, (_, i) => i); // cria [0, 1, 2, ..., N-1]
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)); // índice aleatório
+        [arr[i], arr[j]] = [arr[j], arr[i]]; // troca os elementos
+    }
+    return arr;
+}
+
 function create_new_card(question_n) {
+    const div_pergunta_multipla = document.getElementById("pergunta-multipla");
+    div_pergunta_multipla.style.display = "none";
+    const div_pergunta_verdadeiro_falso = document.getElementById("pergunta-verdadeiro-falso");
+    div_pergunta_verdadeiro_falso.style.display = "none";
     if (question_n <= max_questions) {
         const question = questions[question_n - 1];
-        if (question['Modo'] === "Multiplo") {
-            const div_pergunta_multipla = document.getElementById("pergunta-multipla");
+        if (question['Modo'] === "Multipla Escolha") {
             const h2_pergunta_multipla = document.getElementById("pergunta-multipla-texto");
             const img_pergunta_multipla = document.getElementById("pergunta-multipla-imagem");
-            const resposta_1_pergunta_multipla = document.getElementById("pergunta-multipla-tipo-1");
-            const resposta_2_pergunta_multipla = document.getElementById("pergunta-multipla-tipo-2");
-            const resposta_3_pergunta_multipla = document.getElementById("pergunta-multipla-tipo-3");
             div_pergunta_multipla.style.display = "block";
             h2_pergunta_multipla.textContent = `Pergunta ${question_n} - ${question.Pergunta}`;
-            img_pergunta_multipla.src = `./assets/${question.Imagem}`;
+            img_pergunta_multipla.src = `./assets/${question.Imagem}.png`;
+            const random_order_answers = random_order(3);
+            for (let i = 1; i <= 3; i++) {
+                const answer = document.getElementById(`pergunta-multipla-tipo-${i}`);
+                const answer_from_db = question.Alternativas[random_order_answers[i - 1]];
+                answer.textContent = answer_from_db;
+                answer.onclick = function () {
+                    answer_question(question_n, answer_from_db);
+                };
+            }
+
+        } else if (question['Modo'] === "Verdadeiro ou Falso") {
+            const h2_pergunta_verdadeiro_falso = document.getElementById("pergunta-verdadeiro-falso-texto");
+            div_pergunta_verdadeiro_falso.style.display = "block";
+            h2_pergunta_verdadeiro_falso.textContent = `Pergunta ${question_n} - ${question.Pergunta}`;
+            const random_order_answers = random_order(2);
+            for (let i = 1; i <= 2; i++) {
+                const answer = document.getElementById(`pergunta-verdadeiro-falso-imagem-${i}`);
+                const answer_from_db = question.Alternativas[random_order_answers[i - 1]];
+                answer.src = `./assets/${answer_from_db}.png`;
+                answer.onclick = function () {
+                    answer_question(question_n, answer_from_db);
+                };
+            }
+
         }
     } else {
-        const final_question =
-            document.getElementById(`question-${question_n - 1}`);
-        final_question.style.display = "none";
-        start_quiz_div.innerHTML = `
-                            <h2 style="text-align: center; margin-top: 20vh;">Quiz terminado!</h2>
-                            <h3 style="text-align: center;">Você fez <b>${points}</b> pontos!</h3>
-                            <div style="display: flex; justify-content: center; margin: 20px 0;">
-                                <div style="width: 75%; height: 12vh; background-color: #f3f3f3; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                    <div style="width: ${(points / 5) * 100}%; height: 1000%; background: linear-gradient(90deg,rgb(104, 175, 76), #81c784); transition: width 0.5s ease;"></div>
-                                </div>
-                            </div>
-                            <div style="text-align: center; margin-top: 5vh;">
-                                <button id = "restart_quiz" onclick="location.reload()" style="padding: 10px 20px; font-size: 16px; background-color: #1976D2; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
-                                    Reiniciar Quiz
-                                </button>
-                            </div>
-                        `;
-        const scrollIntoQuizButton = document.getElementById("restart_quiz");
-        scrollIntoQuizButton.style.display = "flex";
-        scrollIntoQuizButton.style.margin = "0 auto 10vh auto";
-        scrollIntoQuizButton.style.justifyContent = "center";
-        scrollIntoQuizButton.style.width = "35vw";
-        scrollIntoQuizButton.style.backgroundColor = "#3b82f6";
-        scrollIntoQuizButton.style.color = "white";
-        scrollIntoQuizButton.style.border = "none";
-        scrollIntoQuizButton.style.padding = "18px 36px";
-        scrollIntoQuizButton.style.borderRadius = "16px";
-        scrollIntoQuizButton.style.cursor = "pointer";
-        scrollIntoQuizButton.style.fontSize = "1.2rem";
-        scrollIntoQuizButton.style.boxShadow = "0 5px 0 #1d4ed8";
-        scrollIntoQuizButton.style.transition = "all 0.1s ease-in-out";
-
-        scrollIntoQuizButton.addEventListener("mouseover", () => {
-            scrollIntoQuizButton.style.transform = "translateY(-2px)";
-            scrollIntoQuizButton.style.boxShadow = "0 7px 0 #1d4ed8";
-        });
-
-        start_quiz_div.style.display = "block";
-        n_questions = 1;
+        score_container.style.display = "block";
+        const quiz_result = document.getElementById("quiz_result");
+        quiz_result.textContent = `Você acertou ${points} de ${max_questions} perguntas!`;
         points = 0;
     }
 }
 
-function answer_question(correct, question) {
-    if (question === n_questions) {
-        if (correct) {
-            points += 1;
-        }
-        n_questions += 1;
-        create_new_card(n_questions);
+function answer_question(question_n, answer) {
+    const question = questions[question_n - 1];
+    if (question.Resposta === answer) {
+        points += 1;
     }
+    create_new_card(question_n + 1);
 }
 
 // botao back to top
