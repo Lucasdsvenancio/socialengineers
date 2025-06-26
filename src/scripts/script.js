@@ -130,10 +130,10 @@ function reset_quiz() {
 }
 
 function random_order(N) {
-    const arr = Array.from({ length: N }, (_, i) => i); // cria [0, 1, 2, ..., N-1]
+    const arr = Array.from({ length: N }, (_, i) => i);
     for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1)); // índice aleatório
-        [arr[i], arr[j]] = [arr[j], arr[i]]; // troca os elementos
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
 }
@@ -184,11 +184,57 @@ function create_new_card(question_n) {
     }
 }
 
+function create_new_info_card(question_n) {
+    const info_section = document.getElementById("info-section");
+    info_section.style.display = "block";
+
+    const question = questions[question_n - 1];
+
+    const infoDiv = document.createElement("div");
+    infoDiv.className = "info-card";
+
+    const isEven = question_n % 2 === 0;
+
+    const imgDiv = document.createElement("div");
+    imgDiv.className = "info-card-img";
+
+    const textDiv = document.createElement("div");
+    textDiv.className = "info-card-text";
+
+    let img = document.createElement("img");
+    img.className = "info-card-image";
+    if (question.Modo === "Multipla Escolha") {
+        img.src = `./assets/${question.Imagem}.png`;
+        img.alt = "Imagem da questão";
+    } else if (question.Modo === "Verdadeiro ou Falso") {
+        img.src = `./assets/${question.Resposta}.png`;
+        img.alt = "Resposta correta";
+    }
+    imgDiv.appendChild(img);
+
+    const explicacao = document.createElement("p");
+    explicacao.className = "info-card-explicacao";
+    explicacao.textContent = question.Explicacao || "Sem explicação disponível.";
+    textDiv.appendChild(explicacao);
+
+    if (isEven) {
+        infoDiv.appendChild(textDiv);
+        infoDiv.appendChild(imgDiv);
+    } else {
+        infoDiv.appendChild(imgDiv);
+        infoDiv.appendChild(textDiv);
+    }
+
+    info_container.appendChild(infoDiv);
+}
+
 function answer_question(question_n, answer) {
     const question = questions[question_n - 1];
     if (question.Resposta === answer) {
         points += 1;
     }
+    create_new_info_card(question_n);
+    console.log("Criado card informativo para a pergunta " + question_n);
     create_new_card(question_n + 1);
 }
 
