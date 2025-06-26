@@ -78,7 +78,7 @@ const start_quiz_div = document.getElementById("start_quiz_div");
 const score_container = document.getElementById("score_container");
 const quiz_container = document.getElementById("quiz_container");
 const info_container = document.getElementById("info-container");
-// let n_questions = 1;
+let n_questions = 1;
 let points = 0;
 
 async function fetchQuestions() {
