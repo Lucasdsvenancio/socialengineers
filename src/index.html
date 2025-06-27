@@ -146,10 +146,14 @@
             <div id="quiz_container">
                 <div id="pergunta-multipla" style="display: none;">
                     <h2 id="pergunta-multipla-texto"></h2>
+                    <div id="answer">
                     <img id="pergunta-multipla-imagem" alt="Imagem da pergunta" class="quiz-image">
-                    <button id="pergunta-multipla-tipo-1"></button>
-                    <button id="pergunta-multipla-tipo-2"></button>
-                    <button id="pergunta-multipla-tipo-3"></button>
+                    <div class="answer-btn-container">
+                    <button id="pergunta-multipla-tipo-1" class="btn"></button>
+                    <button id="pergunta-multipla-tipo-2" class="btn"></button>
+                    <button id="pergunta-multipla-tipo-3" class="btn"></button>
+                    </div>
+                    </div>
                 </div>
                 <div id="pergunta-verdadeiro-falso" style="display: none;">
                     <h2 id="pergunta-verdadeiro-falso-texto"></h2>
@@ -159,7 +163,7 @@
                 <div id="score_container" style="display: none;">
                     <h2>Resultado do Quiz</h2>
                     <p id="quiz_result">Pontuação</p>
-                    <button onclick="reset_quiz()">Reiniciar Quiz</button>
+                    <button onclick="reset_quiz()" class="btn">Reiniciar Quiz</button>
                 </div>
         </section>
 
