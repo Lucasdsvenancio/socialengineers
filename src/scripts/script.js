@@ -135,6 +135,14 @@ async function start_quiz() {
 function reset_quiz() {
     start_quiz_div.style.display = "block";
     score_container.style.display = "none";
+
+    document.getElementById("info-section").style.display = "none";
+    
+    while (info_container.firstChild) {
+        info_container.removeChild(info_container.firstChild);
+    }
+
+    document.getElementById("quiz").scrollIntoView({ behavior: "auto" });
 }
 
 function random_order(N) {
@@ -192,7 +200,7 @@ function create_new_card(question_n) {
     }
 }
 
-function create_new_info_card(question_n) {
+function create_new_info_card(question_n, is_correct) {
     const info_section = document.getElementById("info-section");
     info_section.style.display = "block";
 
@@ -208,6 +216,21 @@ function create_new_info_card(question_n) {
 
     const textDiv = document.createElement("div");
     textDiv.className = "info-card-text";
+
+    const feedbackText = document.createElement("h3");
+    feedbackText.style.textAlign = "center";
+    feedbackText.style.marginBottom = "10px";
+    feedbackText.style.fontSize = "1.5rem";
+    feedbackText.style.fontWeight = "bold";
+
+    if (is_correct) {
+        feedbackText.textContent = "Você Acertou!";
+        feedbackText.style.color = "green";
+    } else {
+        feedbackText.textContent = "Você Errou!";
+        feedbackText.style.color = "red";
+    }
+    textDiv.appendChild(feedbackText);
 
     let img = document.createElement("img");
     img.className = "info-card-image";
@@ -238,10 +261,13 @@ function create_new_info_card(question_n) {
 
 function answer_question(question_n, answer) {
     const question = questions[question_n - 1];
-    if (question.Resposta === answer) {
+
+    const is_correct = question.Resposta === answer;
+
+    if (is_correct) {
         points += 1;
     }
-    create_new_info_card(question_n);
+    create_new_info_card(question_n, is_correct);
     console.log("Criado card informativo para a pergunta " + question_n);
     create_new_card(question_n + 1);
 }
