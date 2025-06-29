@@ -24,6 +24,22 @@ document
             .scrollIntoView({ behavior: "smooth" });
     });
 
+document
+    .getElementById("scroll-into-info-section")
+    .addEventListener("click", function () {
+        document
+            .getElementById("info-section")
+            .scrollIntoView({ behavior: "smooth" });
+    });
+
+document
+    .getElementById("scroll-into-more-info-section")
+    .addEventListener("click", function () {
+        document
+            .getElementById("more-info-section")
+            .scrollIntoView({ behavior: "smooth" });
+    });
+
 window.addEventListener('keydown', function (e) {
     // Lista de teclas que causam rolagem
     const keys = [
@@ -65,6 +81,8 @@ function updateCarousel() {
     cards[nextIndex].classList.add("next");
 }
 
+const carouselCardNumDisplay = document.getElementById("carousel-card-num-display");
+
 const prevIndex = (currentIndex === 0 ? cards.length - 1 : currentIndex - 1);
 const nextIndex = (currentIndex === cards.length - 1 ? 0 : currentIndex + 1);
 
@@ -74,11 +92,13 @@ cards[nextIndex].classList.add("next");
 function nextCard() {
     currentIndex = (currentIndex + 1) % cards.length;
     updateCarousel();
+    carouselCardNumDisplay.textContent = (1+currentIndex) + "/10";
 }
 
 function prevCard() {
     currentIndex = (currentIndex - 1 + cards.length) % cards.length;
     updateCarousel();
+    carouselCardNumDisplay.textContent = (1+currentIndex) + "/10";
 }
 
 document
@@ -251,6 +271,9 @@ function create_new_info_card(question_n, is_correct) {
     if (isEven) {
         infoDiv.appendChild(textDiv);
         infoDiv.appendChild(imgDiv);
+
+        const infoCardImgIdString = "info-card-img" + question_n;
+        imgDiv.setAttribute("id", infoCardImgIdString);
     } else {
         infoDiv.appendChild(imgDiv);
         infoDiv.appendChild(textDiv);
@@ -272,23 +295,67 @@ function answer_question(question_n, answer) {
     create_new_card(question_n + 1);
 }
 
+//Navegação por botões
+let sections = [];
+let currentSectionIndex = 0;
+
+function getVisibleSections() {
+    const selectors = "header, section[id], footer, div#info-card-img2";
+    return Array.from(document.querySelectorAll(selectors)).filter(section => {
+        const isVisible = section.offsetParent !== null;
+        return isVisible;
+    });
+}
+
+function updateCurrentSectionIndex() {
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+        }
+    });
+
+    currentSectionIndex = closestIndex;
+}
+
+let updateButtonsVisibility;
+
+window.addEventListener("scroll", () => {
+    sections = getVisibleSections();
+    updateCurrentSectionIndex();
+    if (typeof updateButtonsVisibility === 'function') {
+        updateButtonsVisibility();
+    }
+});
+
+window.addEventListener("resize", () => {
+    sections = getVisibleSections();
+    updateCurrentSectionIndex();
+});
+
 // botões back to top, go down e go up
 document.addEventListener("DOMContentLoaded", () => {
     const backToTopBtn = document.getElementById("back-to-top-btn");
     const goDownBtn = document.getElementById("go-down-btn");
     const goUpBtn = document.getElementById("go-up-btn");
 
-    const sections = Array.from(document.querySelectorAll("section[id]"));
-    let currentSectionIndex = 0;
+    sections = getVisibleSections();
+    currentSectionIndex = 0;
 
     const observerOptions = {
         root: null,
         threshold: 0.6
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    let observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                sections = getVisibleSections();
                 currentSectionIndex = sections.indexOf(entry.target);
                 updateButtonsVisibility();
             }
@@ -298,8 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sections.forEach(section => observer.observe(section));
 
     function updateButtonsVisibility() {
-
-        // goUpBtn e bactToTopBtn so visíveis a partir do quiz
+        // goUpBtn e bactToTopBtn só visíveis a partir do quiz
         if (currentSectionIndex > 0) {
             goUpBtn.classList.add("show");
             backToTopBtn.classList.add("show");
@@ -308,8 +374,8 @@ document.addEventListener("DOMContentLoaded", () => {
             backToTopBtn.classList.remove("show");
         }
 
-        // esconde goDownBtn na ultima tela
-        if (currentSectionIndex < sections.length - 1) {
+        // esconde goDownBtn na última tela e no header 
+        if (currentSectionIndex > 0 && currentSectionIndex < sections.length - 1) {
             goDownBtn.classList.add("show");
         } else {
             goDownBtn.classList.remove("show");
@@ -317,6 +383,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     goDownBtn.addEventListener("click", () => {
+        sections = getVisibleSections();
+        updateCurrentSectionIndex();
+
         const nextIndex = currentSectionIndex + 1;
         if (nextIndex < sections.length) {
             sections[nextIndex].scrollIntoView({ behavior: "smooth" });
@@ -324,6 +393,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     goUpBtn.addEventListener("click", () => {
+        sections = getVisibleSections();
+        updateCurrentSectionIndex();
+
         const prevIndex = currentSectionIndex - 1;
         if (prevIndex >= 0) {
             sections[prevIndex].scrollIntoView({ behavior: "smooth" });
@@ -331,6 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     backToTopBtn.addEventListener("click", () => {
+        sections = getVisibleSections();
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 });

@@ -135,6 +135,7 @@
                     </svg>
                 </button>
             </div>
+            <p id="carousel-card-num-display">1/10</p>
             <button id="scroll-into-quiz">Estou pronto para aprender mais!</button>
         </section>
 
@@ -160,10 +161,11 @@
                     <img id="pergunta-verdadeiro-falso-imagem-1" class="quiz-image">
                     <img id="pergunta-verdadeiro-falso-imagem-2" class="quiz-image">
                 </div>
-                <div id="score_container" style="display: none;">
+                <div id="score_container" style="display: none;" class="score-container">
                     <h2>Resultado do Quiz</h2>
                     <p id="quiz_result">Pontuação</p>
                     <button onclick="reset_quiz()" class="btn">Reiniciar Quiz</button>
+                    <button class="btn" id="scroll-into-info-section">Ver Explicação</button>
                 </div>
         </section>
 
@@ -171,6 +173,7 @@
             <h2> Explicações sobre o Quiz</h2>
             <div id="info-container">
             </div>
+            <button class="btn" id="scroll-into-more-info-section">Ver mais informações</button>
         </section>
 
         <section id="more-info-section">
@@ -187,37 +190,29 @@
 
         <section id="links-section">
             <h2>Links informativos</h2>
-            <div class="more-info-row">
+            <div class="more-info-row" id="link1">
                 <div class="more-info-card">
                     <img src="https://cdn.prod.website-files.com/6412167c874d3b52f2a4d962/6418a7fc6e84619ffe1e883e_Favicon2.png"
                         alt="Logo do site Deceptive Design">
-                    <div class="text">
-                        <h3><a href="https://www.deceptive.design/">Deceptive Design</a></h3>
-                        <p>A página aborda os tipos de padrões manipulativos, como também o arcabouço jurídico existente em outros países. 
-                        O site também tem o "Hall da Vergonha", que mostra casos de designs manipulativos feitos por grandes empresas.</p>
-                    </div>
+                    <h3><a href="https://www.deceptive.design/">Deceptive Design</a></h3>
+                    <p>A página aborda os tipos de padrões manipulativos, como também o arcabouço jurídico existente em outros países. 
+                    O site também tem o "Hall da Vergonha", que mostra casos de designs manipulativos feitos por grandes empresas.</p>
                 </div>
             </div>
-            <div class="more-info-row">
+            <div class="more-info-row" id="link2">
                 <div class="more-info-card">
                     <img src="https://media.nngroup.com/static/img/favicon.ico" alt="Logo do site Nielsen Norman Group">
-                    <div class="text">
-                        <h3><a href="https://www.nngroup.com/articles/deceptive-patterns/">Deceptive Patterns in UX: How
-                                to Recognize and Avoid Them</a></h3>
-                        <p>O artigo apresenta o conceito e uma breve história e como se deu a evolução dos padrões manipulativos. Assim como salienta como evitar os padrões manipulativos na etapa de desenvolvimento.</p>
-                    </div>
+                    <h3><a href="https://www.nngroup.com/articles/deceptive-patterns/">Deceptive Patterns in UX</a></h3>
+                    <p>O artigo apresenta o conceito e uma breve história e como se deu a evolução dos padrões manipulativos. Assim como salienta como evitar os padrões manipulativos na etapa de desenvolvimento.</p>
                 </div>
             </div>
-            <div class="more-info-row">
+            <div class="more-info-row" id="link3">
                 <div class="more-info-card">
                     <img src="https://idec.org.br/sites/default/files/fav-idec.png"
                         alt="Logo do site Idec (Instituto de Defesa de Consumidores)">
-                    <div class="text">
-                        <h3><a
-                                href="https://idec.org.br/dicas-e-direitos/deceptive-patterns-voce-ja-ouviu-falar-de-padroes-enganosos">Deceptive
-                                patterns: você já ouviu falar de padrões enganosos?</a></h3>
-                        <p>Essa página explica o que são os padrões manipulativos e traz como a legislação brasileira trata esses padrões perante o Código de Defesa do Consumidor e a Lei Geral de Proteção de Dados.</p>
-                    </div>
+                    <h3><a
+                            href="https://idec.org.br/dicas-e-direitos/deceptive-patterns-voce-ja-ouviu-falar-de-padroes-enganosos">Padrões Enganosos</a></h3>
+                    <p>Essa página explica o que são os padrões manipulativos e traz como a legislação brasileira trata esses padrões perante o Código de Defesa do Consumidor e a Lei Geral de Proteção de Dados.</p>
                 </div>
             </div>
             <div class="container-back_top">

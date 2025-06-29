@@ -53,6 +53,12 @@ h2 {
     text-align: center;
 }
 
+@media (max-width:700px){
+    h2 {
+        font-size: 1.6rem;
+    }
+}
+
 p {
     color: #1e3a8a;
     font-size: 1.2rem;
@@ -63,6 +69,7 @@ p {
     color: #212529;
     transition: color 0.4s ease;
     cursor: pointer;
+    display: inline-block;
 }
 
 
@@ -186,7 +193,7 @@ header {
     width: 50vw;
     height: 60vh;
     margin: 0 auto;
-    margin-bottom: 5vh;
+    margin-bottom: 0vh;
     margin-top: 5vh;
 }
 
@@ -276,10 +283,25 @@ header {
 
 @media (max-width: 480px) {
     .carousel-container {
-        width: 100vw;
+        width: 80vw;
         height: 40vh;
         --card-width: 80vw;
     }
+}
+
+/* em resolução de celular, os prev e next faziam aparecer a barra de rolagem horizontal */
+@media (max-width: 670px) {
+    .card.prev {
+        display: none;
+    }
+    .card.next {
+        display: none;
+    }
+}
+
+#carousel-card-num-display{
+    text-align: center;
+    margin-top: 0px;
 }
 
 /* Quiz */
@@ -366,10 +388,21 @@ input:checked+.slider:before {
 }
 .answer-btn-container{
     display: flex;
-
 }
+@media (max-width: 700px) {
+    .answer-btn-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .answer-btn-container button{
+        margin-top: 1.5rem;
+    }
+    .score-container button{
+        margin-top: 1.5rem;
+    }
+}
+
 .btn{
-    
     background-color: #3b82f6;
     color: white;
     border: none;
@@ -380,13 +413,12 @@ input:checked+.slider:before {
     box-shadow: 0 5px 0 #1d4ed8;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
-    font-size: 1.2rem;
     box-shadow: 0 5px 0 #1d4ed8;
     transition: all 0.1s ease-in-out;
     margin: 0.5rem;
     margin-top: 4rem;
-    
 }
+
 #answer{
     display: flex;
     justify-content: center;
@@ -592,6 +624,18 @@ input:checked+.slider:before {
     right: -0.5%;
 }
 
+@media (max-width: 500px){
+    .carousel-button {
+        top: 105%;
+    }
+}
+
+/* Info Section */
+#scroll-into-more-info-section{
+    margin: auto;
+    display: flex;
+}
+    
 
 /* More Information */
 
@@ -605,11 +649,17 @@ input:checked+.slider:before {
     justify-content: space-between;
     width: 85%;
     max-width: 1200px;
-    margin: 0 auto 50px auto;
+    margin: 0 auto 35px auto;
     gap: 40px;
 }
 
 .more-info-card {
+    display: grid;
+    align-items: center;
+    gap: 10px 20px;
+    grid-template-areas:
+    "logo title"
+    "logo text";
     background-color: #f0f8ff;
     border: 1px solid #d6eaff;
     border-radius: 12px;
@@ -629,10 +679,17 @@ input:checked+.slider:before {
     height: auto;
 }
 
+@media (max-width: 1000px){
+    .more-info-video{
+        width:100%;
+    }
+}
+
 .more-info-card:not(.more-info-card--video) {
-    display: flex;
+    display: grid;
     align-items: center;
-    gap: 25px;
+    row-gap: 0px;
+    column-gap: 25px;
 }
 
 .more-info-card--video {
@@ -642,6 +699,8 @@ input:checked+.slider:before {
 }
 
 .more-info-card img {
+    grid-area: logo;
+    justify-self: center;
     width: 32px;
     height: 32px;
     object-fit: contain;
@@ -649,15 +708,20 @@ input:checked+.slider:before {
 }
 
 .more-info-card h3 {
+    grid-area: title;
+    align-self: end;
+    margin: 0;
     color: #1e3a8a;
-    font-size: 1.6rem;
+    font-size: clamp(1.3rem, 2.5vw, 1.5rem);
     margin-top: 0;
     margin-bottom: 15px;
 }
 
 .more-info-card p {
+    grid-area: text;
+    align-self: start;
     color: #1e3a8a;
-    font-size: 1.1rem;
+    font-size: clamp(1.0rem, 1.1vw, 1.2rem);
     line-height: 1.6;
     margin: 0;
 }
@@ -665,6 +729,16 @@ input:checked+.slider:before {
 .more-info-card .text {
     flex: 1;
     text-align: left;
+}
+
+@media (max-width: 1100px) {
+  .more-info-card {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "logo title"
+      "text text";
+  }
 }
 
 /* Botões de navegação entre seções */
@@ -745,4 +819,19 @@ input:checked+.slider:before {
 /* Footer */
 footer p{
     text-align: center;
+}
+@media (max-width: 1000px) {
+    footer{
+        margin-right: 12vw;
+    }
+}
+
+@media (max-width: 700px) {
+    * {
+        box-sizing: border-box;
+        max-width: 95vw; 
+    }
+    img {
+        width: 85vw;
+    }
 }
