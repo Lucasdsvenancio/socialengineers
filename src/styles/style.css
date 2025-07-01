@@ -21,7 +21,7 @@ body {
     background-color: #f0f8ff;
     animation: fadeIn 2s ease-in-out;
     overflow-x: hidden;
-    overflow: hidden; 
+    overflow: hidden;
     font-size: 18px;
 }
 
@@ -651,9 +651,12 @@ input:checked+.slider:before {
     align-items: center;
     justify-content: space-between;
     width: 85%;
+    height: 70%;
     max-width: 1200px;
-    margin: 0 auto 35px auto;
+    margin: 0 auto 0 auto;
+    padding: 25px;
     gap: 40px;
+    z-index: -1; /* Moves the element to the back */
 }
 
 .more-info-card {
@@ -677,7 +680,7 @@ input:checked+.slider:before {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1vw;
-    width: 100%;
+    width: 80%;
     aspect-ratio: 16 / 9;
     height: auto;
 }
@@ -795,7 +798,7 @@ input:checked+.slider:before {
 
 /* Links */
 
-#scroll-into-links{
+#scroll-into-links {
     display: flex;
     margin: 0 auto 10vh auto;
     justify-content: center;
@@ -809,6 +812,8 @@ input:checked+.slider:before {
     font-size: 1.2rem;
     box-shadow: 0 5px 0 #1d4ed8;
     transition: all 0.1s ease-in-out;
+    z-index: 1000; /* Ensures it appears in front */
+    position: relative; /* Allows z-index to take effect */
 }
 #scroll-into-links:hover {
     transform: translateY(-2px);
