@@ -377,8 +377,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // esconde goDownBtn na última tela e no header 
         if (currentSectionIndex > 0 && currentSectionIndex < sections.length - 1) {
             goDownBtn.classList.add("show");
+            goUpBtn.style.backgroundColor = "#1976D2";
+            backToTopBtn.style.backgroundColor = "#1976D2";
         } else {
             goDownBtn.classList.remove("show");
+            goUpBtn.style.backgroundColor = "#1976D28C";
+            backToTopBtn.style.backgroundColor = "#1976D28C";
         }
     }
 
