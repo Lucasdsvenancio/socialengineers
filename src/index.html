@@ -148,7 +148,7 @@
                 <div id="pergunta-multipla" style="display: none;">
                     <h2 id="pergunta-multipla-texto"></h2>
                     <div id="answer">
-                        <img id="pergunta-multipla-imagem" alt="Imagem da pergunta" class="quiz-image">
+                        <img id="pergunta-multipla-imagem" alt="Imagem da pergunta" class="quiz-image" draggable="false">
                         <div class="answer-btn-container">
                             <button id="pergunta-multipla-tipo-1" class="btn"></button>
                             <button id="pergunta-multipla-tipo-2" class="btn"></button>
@@ -158,14 +158,18 @@
                 </div>
                 <div id="pergunta-verdadeiro-falso" style="display: none;">
                     <h2 id="pergunta-verdadeiro-falso-texto"></h2>
-                    <img id="pergunta-verdadeiro-falso-imagem-1" class="quiz-image">
-                    <img id="pergunta-verdadeiro-falso-imagem-2" class="quiz-image">
+                    <img id="pergunta-verdadeiro-falso-imagem-1" class="quiz-image" draggable="false">
+                    <img id="pergunta-verdadeiro-falso-imagem-2" class="quiz-image" draggable="false">
                 </div>
                 <div id="score_container" style="display: none;" class="score-container">
                     <h2>Resultado do Quiz</h2>
                     <p id="quiz_result">Pontuação</p>
+                    <div id="progressbar">
+                        <div>
+                        </div>
+                    </div>
                     <button onclick="reset_quiz()" class="btn">Reiniciar Quiz</button>
-                    <button class="btn" id="scroll-into-info-section">Ver Explicação</button>
+                    <button class="btn" id="scroll-into-info-section">Ver explicação</button>
                 </div>
             </div>
         </section>
@@ -195,7 +199,7 @@
             <div class="more-info-row" id="link1">
                 <div class="more-info-card">
                     <img src="https://cdn.prod.website-files.com/6412167c874d3b52f2a4d962/6418a7fc6e84619ffe1e883e_Favicon2.png"
-                        alt="Logo do site Deceptive Design">
+                        alt="Logo do site Deceptive Design" draggable="false">
                     <h3><a href="https://www.deceptive.design/">Deceptive Design</a></h3>
                     <p>A página aborda os tipos de padrões manipulativos, como também o arcabouço jurídico existente em outros países. 
                     O site também tem o "Hall da Vergonha", que mostra casos de designs manipulativos feitos por grandes empresas.</p>
@@ -203,7 +207,7 @@
             </div>
             <div class="more-info-row" id="link2">
                 <div class="more-info-card">
-                    <img src="https://media.nngroup.com/static/img/favicon.ico" alt="Logo do site Nielsen Norman Group">
+                    <img src="https://media.nngroup.com/static/img/favicon.ico" alt="Logo do site Nielsen Norman Group" draggable="false">
                     <h3><a href="https://www.nngroup.com/articles/deceptive-patterns/">Deceptive Patterns in UX</a></h3>
                     <p>O artigo apresenta o conceito e uma breve história e como se deu a evolução dos padrões manipulativos. Assim como salienta como evitar os padrões manipulativos na etapa de desenvolvimento.</p>
                 </div>
@@ -211,7 +215,7 @@
             <div class="more-info-row" id="link3">
                 <div class="more-info-card">
                     <img src="https://idec.org.br/sites/default/files/fav-idec.png"
-                        alt="Logo do site Idec (Instituto de Defesa de Consumidores)">
+                        alt="Logo do site Idec (Instituto de Defesa de Consumidores)" draggable="false">
                     <h3><a
                             href="https://idec.org.br/dicas-e-direitos/deceptive-patterns-voce-ja-ouviu-falar-de-padroes-enganosos">Padrões Enganosos</a></h3>
                     <p>Essa página explica o que são os padrões manipulativos e traz como a legislação brasileira trata esses padrões perante o Código de Defesa do Consumidor e a Lei Geral de Proteção de Dados.</p>

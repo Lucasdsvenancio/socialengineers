@@ -153,7 +153,13 @@ async function start_quiz() {
 }
 
 function reset_quiz() {
-    start_quiz_div.style.display = "block";
+    start_quiz_div.style.display = "flex";
+    start_quiz_div.style.justifyContent = "center";
+    start_quiz_div.style.alignItems = "center";
+    start_quiz_div.style.height = "100vh";
+    start_quiz_div.style.flexDirection = "column";
+    start_quiz_div.style.gap = "4rem";
+
     score_container.style.display = "none";
 
     document.getElementById("info-section").style.display = "none";
@@ -216,6 +222,11 @@ function create_new_card(question_n) {
         score_container.style.display = "block";
         const quiz_result = document.getElementById("quiz_result");
         quiz_result.textContent = `Você acertou ${points} de ${max_questions} perguntas!`;
+
+        const quiz_progress_bar = document.getElementById("progressbar");
+        const quiz_progress_bar_div = quiz_progress_bar.querySelector("div");
+        let points_string = 100*(points/questions.length) + '%';
+        quiz_progress_bar_div.style.width = points_string;
         points = 0;
     }
 }
@@ -300,8 +311,8 @@ let sections = [];
 let currentSectionIndex = 0;
 
 function getVisibleSections() {
-    var w = window.innerWidth;
-    var h = window.innerHeight;
+    let w = window.innerWidth;
+    let h = window.innerHeight;
 
     let selectors;
     if(w > 768){
