@@ -20,7 +20,6 @@ body {
     min-height: 100vh;
     background-color: #f0f8ff;
     animation: fadeIn 2s ease-in-out;
-    overflow-x: hidden;
     overflow: hidden;
     font-size: 18px;
 }
@@ -60,6 +59,11 @@ h2 {
 
     .header-container {
         align-items: center;
+    }
+}
+@media (max-height:798px), (max-width:380px){
+    h2 {
+        font-size: 1.4rem;
     }
 }
 
@@ -390,6 +394,12 @@ input:checked+.slider:before {
     transform: translateY(-2px);
     box-shadow: 0 7px 0 #1d4ed8;
 }
+
+#start_quiz_button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1d4ed8;
+}
+
 .answer-btn-container{
     display: flex;
 }
@@ -416,9 +426,6 @@ input:checked+.slider:before {
     font-size: 1.2rem;
     box-shadow: 0 5px 0 #1d4ed8;
     transition: all 0.1s ease-in-out;
-    cursor: pointer;
-    box-shadow: 0 5px 0 #1d4ed8;
-    transition: all 0.1s ease-in-out;
     margin: 0.5rem;
     margin-top: 4rem;
 }
@@ -439,6 +446,12 @@ input:checked+.slider:before {
     box-shadow: 0 1px 0 #1d4ed8;
 }
 
+@media (max-width: 700px){
+    section#quiz {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
 
 /* Rounded sliders */
 .slider.round {
@@ -492,6 +505,14 @@ input:checked+.slider:before {
     border-color: #1976D2;
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
 }
+
+#pergunta-multipla-imagem:hover{
+    cursor: auto;
+    transform: none;
+    border-color: var(--border-color);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+}
+
 
 .info-card {
     display: flex;
@@ -627,7 +648,7 @@ input:checked+.slider:before {
     right: -0.5%;
 }
 
-@media (max-width: 500px){
+@media (max-width: 480px){
     .carousel-button {
         top: 105%;
     }
@@ -639,9 +660,7 @@ input:checked+.slider:before {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    height: 100%;
 }
-    
 
 /* More Information */
 
@@ -783,6 +802,12 @@ input:checked+.slider:before {
     visibility: hidden;
     transform: translateX(20px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (max-width:700px){
+    .circle-btn.opaque {
+        background-color: #1976D28C; /* Opacidade */
+    }
 }
 
 #back-to-top-btn {

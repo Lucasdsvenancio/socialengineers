@@ -300,7 +300,16 @@ let sections = [];
 let currentSectionIndex = 0;
 
 function getVisibleSections() {
-    const selectors = "header, section[id], footer, div#info-card-img2";
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+
+    let selectors;
+    if(w > 768){
+        selectors = "header, section[id], footer";
+    }else{
+        selectors = "header, section[id], footer, div#info-card-img2";
+    }
+
     return Array.from(document.querySelectorAll(selectors)).filter(section => {
         const isVisible = section.offsetParent !== null;
         return isVisible;
@@ -374,15 +383,16 @@ document.addEventListener("DOMContentLoaded", () => {
             backToTopBtn.classList.remove("show");
         }
 
-        // esconde goDownBtn na última tela e no header 
+        // esconde goDownBtn na última tela e no header
         if (currentSectionIndex > 0 && currentSectionIndex < sections.length - 1) {
             goDownBtn.classList.add("show");
-            goUpBtn.style.backgroundColor = "#1976D2";
-            backToTopBtn.style.backgroundColor = "#1976D2";
+            goUpBtn.classList.remove("opaque");
+            backToTopBtn.classList.remove("opaque");
+
         } else {
             goDownBtn.classList.remove("show");
-            goUpBtn.style.backgroundColor = "#1976D28C";
-            backToTopBtn.style.backgroundColor = "#1976D28C";
+            goUpBtn.classList.add("opaque");
+            backToTopBtn.classList.add("opaque");
         }
     }
 
