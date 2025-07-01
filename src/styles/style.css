@@ -21,7 +21,7 @@ body {
     background-color: #f0f8ff;
     animation: fadeIn 2s ease-in-out;
     overflow-x: hidden;
-    /* overflow: hidden; */
+    overflow: hidden; 
     font-size: 18px;
 }
 
@@ -631,9 +631,12 @@ input:checked+.slider:before {
 }
 
 /* Info Section */
-#scroll-into-more-info-section{
+#scroll-into-more-info-section {
     margin: auto;
     display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
 }
     
 
@@ -674,7 +677,7 @@ input:checked+.slider:before {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1vw;
-    width: 80%;
+    width: 100%;
     aspect-ratio: 16 / 9;
     height: auto;
 }
