@@ -40,11 +40,11 @@ document
             .scrollIntoView({ behavior: "smooth" });
     });
 
-window.addEventListener('keydown', function (e) {
+window.addEventListener("keydown", function (e) {
     // Lista de teclas que causam rolagem
     const keys = [
-        'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
-        'PageUp', 'PageDown', 'Home', 'End', ' '
+        "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
+        "PageUp", "PageDown", "Home", "End", " "
     ];
     if (keys.includes(e.key)) {
         e.preventDefault();
@@ -81,7 +81,8 @@ function updateCarousel() {
     cards[nextIndex].classList.add("next");
 }
 
-const carouselCardNumDisplay = document.getElementById("carousel-card-num-display");
+let carouselCardNumDisplay;
+carouselCardNumDisplay = document.getElementById("carousel-card-num-display");
 
 const prevIndex = (currentIndex === 0 ? cards.length - 1 : currentIndex - 1);
 const nextIndex = (currentIndex === cards.length - 1 ? 0 : currentIndex + 1);
@@ -111,67 +112,64 @@ document
 updateCarousel();
 
 // Quiz
-let questions = [];
-let max_questions = 4;
-const start_quiz_div = document.getElementById("start_quiz_div");
-const score_container = document.getElementById("score_container");
-const quiz_container = document.getElementById("quiz_container");
-const info_container = document.getElementById("info-container");
-let n_questions = 1;
+let maxQuestions = 4;
+const startQuizDiv = document.getElementById("start-quiz-div");
+const scoreContainer = document.getElementById("score-container");
+const infoContainer = document.getElementById("info-container");
 let points = 0;
 
 async function fetchQuestions() {
     try {
         const response = await fetch("./questions.json");
         const questions = await response.json();
-        const questions_made = [];
-        const questions_added = new Set();
-        if (max_questions > questions.length) {
-            max_questions = questions.length;
+        const questionsMade = [];
+        const questionsAdded = new Set();
+        if (maxQuestions > questions.length) {
+            maxQuestions = questions.length;
         }
         while (
-            questions_made.length < max_questions &&
-            questions_added.size < questions.length
+            questionsMade.length < maxQuestions &&
+            questionsAdded.size < questions.length
         ) {
             const index = Math.floor(Math.random() * questions.length);
-            if (!questions_added.has(index)) {
-                questions_added.add(index);
-                questions_made.push(questions[index]);
+            if (!questionsAdded.has(index)) {
+                questionsAdded.add(index);
+                questionsMade.push(questions[index]);
             }
         }
-        return questions_made;
+        return questionsMade;
     } catch (error) {
         console.error("Erro ao buscar as perguntas:", error);
         return [];
     }
 }
 
-async function start_quiz() {
+async function startQuiz() {
     questions = await fetchQuestions();
-    start_quiz_div.style.display = "none";
-    create_new_card(1);
+    startQuizDiv.style.display = "none";
+    createNewCard(1);
 }
 
-function reset_quiz() {
-    start_quiz_div.style.display = "flex";
-    start_quiz_div.style.justifyContent = "center";
-    start_quiz_div.style.alignItems = "center";
-    start_quiz_div.style.height = "100vh";
-    start_quiz_div.style.flexDirection = "column";
-    start_quiz_div.style.gap = "4rem";
+function resetQuiz() {
+    startQuizDiv.style.display = "flex";
+    startQuizDiv.style.justifyContent = "center";
+    startQuizDiv.style.alignItems = "center";
+    startQuizDiv.style.height = "100vh";
+    startQuizDiv.style.flexDirection = "column";
+    startQuizDiv.style.gap = "4rem";
 
-    score_container.style.display = "none";
+    scoreContainer.style.display = "none";
 
     document.getElementById("info-section").style.display = "none";
-    
-    while (info_container.firstChild) {
-        info_container.removeChild(info_container.firstChild);
+
+    while (infoContainer.firstChild) {
+        infoContainer.removeChild(infoContainer.firstChild);
     }
 
     document.getElementById("quiz").scrollIntoView({ behavior: "auto" });
 }
 
-function random_order(N) {
+function randomOrder(N) {
     const arr = Array.from({ length: N }, (_, i) => i);
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -180,67 +178,67 @@ function random_order(N) {
     return arr;
 }
 
-function create_new_card(question_n) {
-    const div_pergunta_multipla = document.getElementById("pergunta-multipla");
-    div_pergunta_multipla.style.display = "none";
-    const div_pergunta_verdadeiro_falso = document.getElementById("pergunta-verdadeiro-falso");
-    div_pergunta_verdadeiro_falso.style.display = "none";
-    if (question_n <= max_questions) {
-        const question = questions[question_n - 1];
-        if (question['Modo'] === "Multipla Escolha") {
-            const h2_pergunta_multipla = document.getElementById("pergunta-multipla-texto");
-            const img_pergunta_multipla = document.getElementById("pergunta-multipla-imagem");
-            div_pergunta_multipla.style.display = "block";
-            h2_pergunta_multipla.textContent = `Pergunta ${question_n} - ${question.Pergunta}`;
-            img_pergunta_multipla.src = `./assets/${question.Imagem}.png`;
-            const random_order_answers = random_order(3);
+function createNewCard(questionN) {
+    const divPerguntaMultipla = document.getElementById("pergunta-multipla");
+    divPerguntaMultipla.style.display = "none";
+    const divPerguntaVerdadeiroFalso = document.getElementById("pergunta-verdadeiro-falso");
+    divPerguntaVerdadeiroFalso.style.display = "none";
+    if (questionN <= maxQuestions) {
+        const question = questions[questionN - 1];
+        if (question["Modo"] === "Multipla Escolha") {
+            const h2PerguntaMultipla = document.getElementById("pergunta-multipla-texto");
+            const imgPerguntaMultipla = document.getElementById("pergunta-multipla-imagem");
+            divPerguntaMultipla.style.display = "block";
+            h2PerguntaMultipla.textContent = `Pergunta ${questionN} - ${question.Pergunta}`;
+            imgPerguntaMultipla.src = `./assets/${question.Imagem}.png`;
+            const randomOrderAnswers = randomOrder(3);
             for (let i = 1; i <= 3; i++) {
                 const answer = document.getElementById(`pergunta-multipla-tipo-${i}`);
-                const answer_from_db = question.Alternativas[random_order_answers[i - 1]];
-                answer.textContent = answer_from_db;
+                const answerFromDb = question.Alternativas[randomOrderAnswers[i - 1]];
+                answer.textContent = answerFromDb;
                 answer.onclick = function () {
-                    answer_question(question_n, answer_from_db);
+                    answerQuestion(questionN, answerFromDb);
                 };
             }
 
-        } else if (question['Modo'] === "Verdadeiro ou Falso") {
-            const h2_pergunta_verdadeiro_falso = document.getElementById("pergunta-verdadeiro-falso-texto");
-            div_pergunta_verdadeiro_falso.style.display = "block";
-            h2_pergunta_verdadeiro_falso.textContent = `Pergunta ${question_n} - ${question.Pergunta}`;
-            const random_order_answers = random_order(2);
+        } else if (question["Modo"] === "Verdadeiro ou Falso") {
+            const h2PerguntaVerdadeiroFalso = document.getElementById("pergunta-verdadeiro-falso-texto");
+            divPerguntaVerdadeiroFalso.style.display = "block";
+            h2PerguntaVerdadeiroFalso.textContent = `Pergunta ${questionN} - ${question.Pergunta}`;
+            const randomOrderAnswers = randomOrder(2);
             for (let i = 1; i <= 2; i++) {
                 const answer = document.getElementById(`pergunta-verdadeiro-falso-imagem-${i}`);
-                const answer_from_db = question.Alternativas[random_order_answers[i - 1]];
-                answer.src = `./assets/${answer_from_db}.png`;
+                const answerFromDb = question.Alternativas[randomOrderAnswers[i - 1]];
+                answer.src = `./assets/${answerFromDb}.png`;
                 answer.onclick = function () {
-                    answer_question(question_n, answer_from_db);
+                    answerQuestion(questionN, answerFromDb);
                 };
             }
 
         }
     } else {
-        score_container.style.display = "block";
-        const quiz_result = document.getElementById("quiz_result");
-        quiz_result.textContent = `Você acertou ${points} de ${max_questions} perguntas!`;
+        scoreContainer.style.display = "block";
+        const quizResult = document.getElementById("quiz-result");
+        quizResult.textContent = `Você acertou ${points} de ${maxQuestions} perguntas!`;
 
-        const quiz_progress_bar = document.getElementById("progressbar");
-        const quiz_progress_bar_div = quiz_progress_bar.querySelector("div");
-        let points_string = 100*(points/questions.length) + '%';
-        quiz_progress_bar_div.style.width = points_string;
+        const quizProgressBar = document.getElementById("progressbar");
+        const quizProgressBarDiv = quizProgressBar.querySelector("div");
+        let pointsString = 100*(points/questions.length) + "%";
+        quizProgressBarDiv.style.width = pointsString;
         points = 0;
     }
 }
 
-function create_new_info_card(question_n, is_correct) {
-    const info_section = document.getElementById("info-section");
-    info_section.style.display = "block";
+function createNewInfoCard(questionN, isCorrect) {
+    const infoSection = document.getElementById("info-section");
+    infoSection.style.display = "block";
 
-    const question = questions[question_n - 1];
+    const question = questions[questionN - 1];
 
     const infoDiv = document.createElement("div");
     infoDiv.className = "info-card";
 
-    const isEven = question_n % 2 === 0;
+    const isEven = questionN % 2 === 0;
 
     const imgDiv = document.createElement("div");
     imgDiv.className = "info-card-img";
@@ -254,7 +252,7 @@ function create_new_info_card(question_n, is_correct) {
     feedbackText.style.fontSize = "1.5rem";
     feedbackText.style.fontWeight = "bold";
 
-    if (is_correct) {
+    if (isCorrect) {
         feedbackText.textContent = "Você Acertou!";
         feedbackText.style.color = "green";
     } else {
@@ -283,27 +281,27 @@ function create_new_info_card(question_n, is_correct) {
         infoDiv.appendChild(textDiv);
         infoDiv.appendChild(imgDiv);
 
-        const infoCardImgIdString = "info-card-img" + question_n;
+        const infoCardImgIdString = "info-card-img" + questionN;
         imgDiv.setAttribute("id", infoCardImgIdString);
     } else {
         infoDiv.appendChild(imgDiv);
         infoDiv.appendChild(textDiv);
     }
 
-    info_container.appendChild(infoDiv);
+    infoContainer.appendChild(infoDiv);
 }
 
-function answer_question(question_n, answer) {
-    const question = questions[question_n - 1];
+function answerQuestion(questionN, answer) {
+    const question = questions[questionN - 1];
 
-    const is_correct = question.Resposta === answer;
+    const isCorrect = question.Resposta === answer;
 
-    if (is_correct) {
+    if (isCorrect) {
         points += 1;
     }
-    create_new_info_card(question_n, is_correct);
-    console.log("Criado card informativo para a pergunta " + question_n);
-    create_new_card(question_n + 1);
+    createNewInfoCard(questionN, isCorrect);
+    console.log("Criado card informativo para a pergunta " + questionN);
+    createNewCard(questionN + 1);
 }
 
 //Navegação por botões
@@ -348,7 +346,7 @@ let updateButtonsVisibility;
 window.addEventListener("scroll", () => {
     sections = getVisibleSections();
     updateCurrentSectionIndex();
-    if (typeof updateButtonsVisibility === 'function') {
+    if (typeof updateButtonsVisibility === "function") {
         updateButtonsVisibility();
     }
 });

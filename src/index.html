@@ -33,13 +33,13 @@
             <div class="carousel-container">
                 <div class="carousel-track">
                     <div class="card">
-                        <h3>Confirmshaming</h3>
+                        <h3><span lang="en">Confirmshaming</span></h3>
                         <p class="description">
-                            Confirmshaming funciona ao provocar emoções desconfortáveis, como culpa ou vergonha, para
+                            <span lang="en">Confirmshaming</span> funciona ao provocar emoções desconfortáveis, como culpa ou vergonha, para
                             influenciar a tomada de decisão dos usuários. Sites ou aplicativos que utilizam esse padrão
                             enganoso costumam apresentar botões de recusa com rótulos redigidos de forma depreciativa ou
                             humilhante, fazendo com que os usuários se sintam mal por optarem por não aderir ao serviço
-                            ou recurso oferecido. Ao atingir as emoções e a autoimagem dos usuários, o confirmshaming
+                            ou recurso oferecido. Ao atingir as emoções e a autoimagem dos usuários, o <span lang="en">confirmshaming</span>
                             busca aumentar as chances de que eles cedam à ação desejada, beneficiando, no final das
                             contas, o provedor do serviço.
                         </p>
@@ -47,7 +47,7 @@
                     <div class="card">
                         <h3>Bait and Switch</h3>
                         <p class="description">
-                            O "bait and switch" (isca e troca) é um padrão enganoso onde um produto ou serviço atraente
+                            O <span lang="en">"bait and switch"</span> (isca e troca) é um padrão enganoso onde um produto ou serviço atraente
                             é anunciado a um preço baixo (a isca), mas quando os consumidores tentam comprá-lo,
                             descobrem que não está disponível. Em vez disso, são persuadidos a comprar um item
                             semelhante, mas mais caro e menos desejável (a troca).
@@ -71,9 +71,9 @@
                         </p>
                     </div>
                     <div class="card">
-                        <h3>Privacy Zuckering</h3>
+                        <h3><span lang="en">Privacy Zuckering</span></h3>
                         <p class="description">
-                            "Privacy Zuckering" refere-se a táticas que induzem os usuários a compartilhar mais
+                            <span lang="en">"Privacy Zuckering"</span> refere-se a táticas que induzem os usuários a compartilhar mais
                             informações pessoais do que pretendiam. Isso pode acontecer por meio de configurações de
                             privacidade confusas, padrões predefinidos que favorecem o compartilhamento ou interfaces
                             que manipulam os usuários a revelar dados.
@@ -97,9 +97,9 @@
                         </p>
                     </div>
                     <div class="card">
-                        <h3>Friend Spam</h3>
+                        <h3><span lang="en">Friend Spam</span></h3>
                         <p class="description">
-                            "Friend Spam" ocorre quando um serviço solicita acesso à lista de contatos de um usuário sob
+                            <span lang="en">"Friend Spam"</span> ocorre quando um serviço solicita acesso à lista de contatos de um usuário sob
                             um pretexto específico (como encontrar amigos), mas depois usa esses contatos para enviar
                             mensagens promocionais ou convites sem o consentimento explícito de todos os envolvidos.
                         </p>
@@ -140,15 +140,15 @@
         </section>
 
         <section id="quiz">
-            <div id="start_quiz_div">
+            <div id="start-quiz-div">
                 <h2>Vamos testar seu conhecimento?</h2>
-                <button id="start_quiz_button" onclick="start_quiz()">Começar Quiz</button>
+                <button id="start-quiz-button" onclick="startQuiz()">Começar Quiz</button>
             </div>
-            <div id="quiz_container">
+            <div id="quiz-container">
                 <div id="pergunta-multipla" style="display: none;">
                     <h2 id="pergunta-multipla-texto"></h2>
                     <div id="answer">
-                        <img id="pergunta-multipla-imagem" alt="Imagem da pergunta" class="quiz-image" draggable="false">
+                        <img src="." id="pergunta-multipla-imagem" alt="Imagem da pergunta" class="quiz-image" draggable="false">
                         <div class="answer-btn-container">
                             <button id="pergunta-multipla-tipo-1" class="btn"></button>
                             <button id="pergunta-multipla-tipo-2" class="btn"></button>
@@ -158,17 +158,17 @@
                 </div>
                 <div id="pergunta-verdadeiro-falso" style="display: none;">
                     <h2 id="pergunta-verdadeiro-falso-texto"></h2>
-                    <img id="pergunta-verdadeiro-falso-imagem-1" class="quiz-image" draggable="false">
-                    <img id="pergunta-verdadeiro-falso-imagem-2" class="quiz-image" draggable="false">
+                    <img src="." id="pergunta-verdadeiro-falso-imagem-1" alt="Imagem 1" class="quiz-image" draggable="false">
+                    <img src="." id="pergunta-verdadeiro-falso-imagem-2" alt="Imagem 2" class="quiz-image" draggable="false">
                 </div>
-                <div id="score_container" style="display: none;" class="score-container">
+                <div id="score-container" style="display: none;" class="score-container">
                     <h2>Resultado do Quiz</h2>
-                    <p id="quiz_result">Pontuação</p>
+                    <p id="quiz-result">Pontuação</p>
                     <div id="progressbar">
                         <div>
                         </div>
                     </div>
-                    <button onclick="reset_quiz()" class="btn">Reiniciar Quiz</button>
+                    <button onclick="resetQuiz()" class="btn">Reiniciar Quiz</button>
                     <button class="btn" id="scroll-into-info-section">Ver explicação</button>
                 </div>
             </div>
@@ -200,7 +200,7 @@
                 <div class="more-info-card">
                     <img src="https://cdn.prod.website-files.com/6412167c874d3b52f2a4d962/6418a7fc6e84619ffe1e883e_Favicon2.png"
                         alt="Logo do site Deceptive Design" draggable="false">
-                    <h3><a href="https://www.deceptive.design/">Deceptive Design</a></h3>
+                    <h3><a href="https://www.deceptive.design/"><span lang="en">Deceptive Design</span></a></h3>
                     <p>A página aborda os tipos de padrões manipulativos, como também o arcabouço jurídico existente em outros países. 
                     O site também tem o "Hall da Vergonha", que mostra casos de designs manipulativos feitos por grandes empresas.</p>
                 </div>
@@ -208,7 +208,7 @@
             <div class="more-info-row" id="link2">
                 <div class="more-info-card">
                     <img src="https://media.nngroup.com/static/img/favicon.ico" alt="Logo do site Nielsen Norman Group" draggable="false">
-                    <h3><a href="https://www.nngroup.com/articles/deceptive-patterns/">Deceptive Patterns in UX</a></h3>
+                    <h3><a href="https://www.nngroup.com/articles/deceptive-patterns/"><span lang="en">Deceptive Patterns in UX</span></a></h3>
                     <p>O artigo apresenta o conceito e uma breve história e como se deu a evolução dos padrões manipulativos. Assim como salienta como evitar os padrões manipulativos na etapa de desenvolvimento.</p>
                 </div>
             </div>
@@ -221,7 +221,7 @@
                     <p>Essa página explica o que são os padrões manipulativos e traz como a legislação brasileira trata esses padrões perante o Código de Defesa do Consumidor e a Lei Geral de Proteção de Dados.</p>
                 </div>
             </div>
-            <div class="container-back_top">
+            <div class="container-back-top">
                 <button id="back-to-top-btn" class="circle-btn" aria-label="Voltar ao topo" title="Voltar ao topo">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff">
                         <path d="M 12 2.0996094 L 1 12 L 4 12 L 4 21 L 11 21 L 11 15 L 13 15 L 13 21 L 20 21 L 20 12 L 23 12 L 12 2.0996094 z M 12 4.7910156 L 18 10.191406 L 18 11 L 18 19 L 15 19 L 15 13 L 9 13 L 9 19 L 6 19 L 6 10.191406 L 12 4.7910156 z"></path>
@@ -237,8 +237,10 @@
             </div>
             <div class="container-go-down">
                 <button id="go-down-btn" class="circle-btn" aria-label="Descer" title="Descer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,-1,0,0)">
-                        <path d="M12 19V5M5 12l7-7 7 7"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <g transform="matrix(1,0,0,-1,0,24)">
+                            <path d="M12 19V5M5 12l7-7 7 7"/>
+                        </g>
                     </svg>
                 </button>
             </div>

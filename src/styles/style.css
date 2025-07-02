@@ -369,7 +369,7 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-#start_quiz_div {
+#start-quiz-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -378,7 +378,7 @@ input:checked+.slider:before {
     gap: 4rem;
 }
 
-#start_quiz_button {
+#start-quiz-button {
     display: flex;
     margin: 0 auto 10vh auto;
     justify-content: center;
@@ -394,12 +394,12 @@ input:checked+.slider:before {
     transition: all 0.1s ease-in-out;
 }
 
-#start_quiz_button:hover {
+#start-quiz-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 7px 0 #1d4ed8;
 }
 
-#start_quiz_button:active {
+#start-quiz-button:active {
     transform: translateY(4px);
     box-shadow: 0 1px 0 #1d4ed8;
 }
